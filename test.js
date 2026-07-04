@@ -1,6 +1,5 @@
-function test(params) {
-    const display = params.display;
+function test() {
 
-    console.log ('test');
+    INITIAL_DISPLAY.setValue("Test1");
     return true;
 }
