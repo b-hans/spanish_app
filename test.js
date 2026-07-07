@@ -1,10 +1,10 @@
 function test() {
 
-    INITIAL_DISPLAY.setValue("Test31");
+    resetSheetToDefaultDimensions();
 
-    const data = AR_REGULAR.getDataRange().getValues();
+    // const data = AR_REGULAR.getDataRange().getValues();
 
-    console.log (data);
+    // console.log (data);
     
     return true;
 }
