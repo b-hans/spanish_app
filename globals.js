@@ -3,7 +3,10 @@ const FORMSHEET = SpreadsheetApp.getActiveSpreadsheet()
     .getSheetByName("Forms");
 
 const AR_REGULAR = SpreadsheetApp.getActiveSpreadsheet()
-    .getSheetByName("AR Regular Endings")
+    .getSheetByName("AR Regular Endings");
+
+const TEST_SHEET = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName("Test Form");
 
 
 // displays
@@ -20,3 +23,8 @@ const FORM_RANGE_A1 = "A1:G22";
 
 // form styles
 const FORM_BACK = "#cfe2f3";
+const FORM_DISPLAY_BORDERS = [
+    true, true, true, true, false, false,
+    "#000000",
+    SpreadsheetApp.BorderStyle.SOLID
+];

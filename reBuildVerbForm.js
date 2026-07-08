@@ -8,7 +8,13 @@ function reBuildVerbForm () {
         FORM_DISPLAY_RANGE.merge()
             .setVerticalAlignment("top")
             .setBackground('#ffffff')
-            .setValue ("Booyah!");
+            .setBorder(
+                FORM_DISPLAY_BORDERS[0],
+                FORM_DISPLAY_BORDERS[1],
+                FORM_DISPLAY_BORDERS[2],
+                FORM_DISPLAY_BORDERS[3],
+            )
+            .setValue ("Messages here");
 
         return true;
     }
