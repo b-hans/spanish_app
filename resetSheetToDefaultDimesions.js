@@ -9,7 +9,8 @@ function resetSheetToDefaultDimensions() {
   
   // Select the entire area by defining the full range
   var fullRange = sheet.getRange(1, 1, maxRows, maxColumns);
-  fullRange.clearContent();
+  fullRange.clearContent()
+    .clearDataValidations();
 
   // 3. Find all merged cell groups within that range
   const mergedRanges = fullRange.getMergedRanges();
@@ -27,7 +28,18 @@ function resetSheetToDefaultDimensions() {
   // Reset all row heights to the default 21 pixels
   sheet.setRowHeights(1, maxRows, 21);
 
-  fullRange.setBackground('#ffffff');
+  fullRange.setBorder(
+      false, false, false, false, false, false
+    )
+    .setBackground('#ffffff')
+    .setFontColor ('#000000')
+    .setFontFamily('Arial')
+    .setFontSize(10)
+    .setHorizontalAlignment('left')
+    .setVerticalAlignment('top');
+
+  clearCache();
 
   sheet.getRange("A1").activate();
+
 }
