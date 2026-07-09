@@ -5,7 +5,7 @@ function onOpen() {
 
   // 2. Build and add the custom menu
   ui.createMenu('🛠️ Custom Tools')
-    .addItem('Rebuild', 'reBuildVerbForm')
-    .addItem('Test', 'test')
+    .addItem('Start', 'reBuildVerbForm')
+    .addItem('Clear', 'test')
     .addToUi(); // Renders the menu on the toolbar
 }

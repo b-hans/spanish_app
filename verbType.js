@@ -30,10 +30,7 @@ function verbType(e) {
         switch (verb_type) {
 
             case "Regular":
-                display.setValue ("Regular: " +
-                    validCheck.stem + " : " + validCheck.ending
-                );
-                break;
+                return regularVerbOut({display: display, verb: validCheck});
 
             case "Irregular":
                 display.setValue ("Irregular: " +
