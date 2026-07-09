@@ -8,6 +8,11 @@ const AR_REGULAR = SpreadsheetApp.getActiveSpreadsheet()
 const TEST_SHEET = SpreadsheetApp.getActiveSpreadsheet()
     .getSheetByName("Test Form");
 
+// Regular verbs
+const REGULAR_VERBS = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName("Regular verbs");
+const REGULAR_VERBS_HEADINGS = ['ID', 'Stem', 'Ending'];
+
 
 // displays
 const INITIAL_DISPLAY = FORMSHEET.getRange("A1");
