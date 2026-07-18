@@ -3,14 +3,22 @@ function menuEdit(e) {
     const CURRENT_TYPE = CACHE.get('CURRENT_TYPE');
     const display = FORM_DISPLAY_RANGE;
     const range = e.range;
+    const a1 = range.getA1Notation();
     
     try {
 
         switch (CURRENT_TYPE) {
 
             case "form1":
-                if (range.getA1Notation() == VERB_TYPE_INPUT_A1) {
-                    return verbType(e); 
+                switch (a1) {
+                    case VERB_TYPE_INPUT_A1:
+                        return verbType(e);
+
+                    case RESPONSE_A1:
+                        return responseAction(e);
+                        
+                    default:
+                        return true;
                 }
 
                 return true;

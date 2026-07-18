@@ -21,8 +21,7 @@ const FORM_DISPLAY_RANGE_A1 = "B20";
 
 const FORM_SHORT_DISPLAY = FORMSHEET.getRange("B20:D21");
 
-const FORM_RESPONSE_MESSAGE = FORMSHEET.getRange("E20:F21");
-const FORM_RESPONSE_DATA_VALIDATION = FORMSHEET.getRange("G20");
+const FORM_RESPONSE_RANGE = FORMSHEET.getRange("E20:F21");
 
 
 // form ranges
@@ -38,6 +37,7 @@ const FORM_RANGE_A1 = "A1:G22";
 const FORM_TITLE_RANGE_A1 = "B2";
 const INFINITIVE_TITLE_RANGE_A1 = "B5";
 const VERB_TYPE_INPUT_A1 = "F5";
+const RESPONSE_A1 = "E20";
 
 // form styles
 const FORM_BACK = "#cfe2f3";
@@ -55,6 +55,11 @@ const TITLES_BACKGROUND = "#f3f3f3";
 // input validations
 const VERB_TYPE_RULE = SpreadsheetApp.newDataValidation()
     .requireValueInList(['Select one', 'Regular', 'Irregular'])
+    .setAllowInvalid(false)
+    .build();
+
+const ADD_VERB_RULE = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['Select one', "Yes, add this verb", "No, return"], true)
     .setAllowInvalid(false)
     .build();
 

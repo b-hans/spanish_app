@@ -23,7 +23,16 @@ function getResponse (params) {
                 FORM_DISPLAY_BORDERS[7],
             )
 
-        display.setValue ("Response required");
+        FORM_RESPONSE_RANGE.merge()
+            .setBackground("#e3c6c3")
+            .setFontColor("#000000")
+            .setVerticalAlignment("middle")
+            .setHorizontalAlignment("center");
+
+        FORM_RESPONSE_RANGE.setDataValidation(ADD_VERB_RULE)
+            .setValue("Select one");
+
+        display.setValue ("Response required\n" + params.message);
 
         return true;
     }

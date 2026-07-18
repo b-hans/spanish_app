@@ -16,7 +16,7 @@ function regularVerbOut(params) {
         }
         else {
             display.setValue ("boo");
-            return getResponse({message: "Verb is not in the system, we need to add it"});
+            return getResponse({message: "Verb is not in the system, would you like to add it?"});
         }
         return true;
     }
