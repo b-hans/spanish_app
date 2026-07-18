@@ -12,10 +12,11 @@ function regularVerbOut(params) {
         });
 
         if (myVerb.id) {
-            display.setValue ("Verb in the system");
+            display.setValue ("Verb in the system. Display details");
         }
         else {
-            display.setValue ("Verb is not in the system, we need to add it");
+            display.setValue ("boo");
+            return getResponse({message: "Verb is not in the system, we need to add it"});
         }
         return true;
     }
