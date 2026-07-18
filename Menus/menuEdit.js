@@ -11,7 +11,7 @@ function menuEdit(e) {
 
             case "form1":
                 switch (a1) {
-                    case VERB_TYPE_INPUT_A1:
+                    case VERB_TYPE_INPUT_A1:                        
                         return verbType(e);
 
                     case RESPONSE_A1:

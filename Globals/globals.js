@@ -19,9 +19,9 @@ const INITIAL_DISPLAY = FORMSHEET.getRange("A1");
 const FORM_DISPLAY_RANGE = FORMSHEET.getRange("B20:F21");
 const FORM_DISPLAY_RANGE_A1 = "B20";
 
-const FORM_SHORT_DISPLAY = FORMSHEET.getRange("B20:D21");
+const FORM_SHORT_DISPLAY = FORMSHEET.getRange("B7:F9");
 
-const FORM_RESPONSE_RANGE = FORMSHEET.getRange("E20:F21");
+const FORM_RESPONSE_RANGE = FORMSHEET.getRange("E10:F11");
 
 
 // form ranges
@@ -37,7 +37,7 @@ const FORM_RANGE_A1 = "A1:G22";
 const FORM_TITLE_RANGE_A1 = "B2";
 const INFINITIVE_TITLE_RANGE_A1 = "B5";
 const VERB_TYPE_INPUT_A1 = "F5";
-const RESPONSE_A1 = "E20";
+const RESPONSE_A1 = "E10";
 
 // form styles
 const FORM_BACK = "#cfe2f3";

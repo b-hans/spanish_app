@@ -15,6 +15,7 @@ function regularVerbOut(params) {
             display.setValue ("Verb in the system. Display details");
         }
         else {
+            console.log ('check 1');
             return getResponse({message: "'" + verbStem + 
                 verbEnding + "' is not in the system, would you like to add it?"});
         }

@@ -65,7 +65,7 @@ function reBuildVerbForm () {
 
             )
             .setFontColor(DISPLAY_FONT_COLOR)
-            .setWrap(true);
+            .setWrap(true)
             .setValue ("Messages here");
 
         CACHE.put("CURRENT_TYPE", "form1", 3600);
@@ -75,6 +75,8 @@ function reBuildVerbForm () {
         FORM_DISPLAY_RANGE.setValue (FORM_DISPLAY_RANGE.getValue() + " : " +
             tester);
 
+        INFINITIVE_INPUT_RANGE.activate();
+        
         return true;
     }
     catch (error) {

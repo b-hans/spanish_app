@@ -6,7 +6,13 @@ function resetResponse() {
         display.setValue ("Resetting....");
 
         FORM_RESPONSE_RANGE.clearContent().clearDataValidations()
-            .setBackground('#ffffff');
+            .breakApart()
+            .setBackground(FORM_BACK);
+
+        FORM_SHORT_DISPLAY.setBorder(false, false, false, false, false, false)
+            .setBackground(FORM_BACK)
+            .setValue("")
+            .breakApart();
 
         FORM_DISPLAY_RANGE.merge()
             .setBorder(
@@ -19,7 +25,9 @@ function resetResponse() {
                 FORM_DISPLAY_BORDERS[6],
                 FORM_DISPLAY_BORDERS[7],
             )
-            .setWrap(true);
+            .setBackground('#ffffff')
+            .setWrap(true)
+            .setValue ("");
 
 
         INFINITIVE_INPUT_RANGE.activate();

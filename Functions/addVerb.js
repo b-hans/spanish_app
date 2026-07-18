@@ -1,12 +1,14 @@
 function addVerb() {
     const verb = JSON.parse(CACHE.get('current_verb'));
-    const display = FORMSHEET.getRange(FORM_DISPLAY_RANGE_A1);
+    let display = FORM_SHORT_DISPLAY;
 
     try {
 
+        display.setValue("Working....");
+
         resetResponse();
 
-        display.setValue("Working....");
+        FORM_DISPLAY_RANGE.setValue ("Still working");
 
         let verbData = REGULAR_VERBS.getDataRange().getValues();
         let verbHeadings = verbData.shift();
@@ -34,8 +36,8 @@ function addVerb() {
             verbData[0].length
         ).setValues(verbData);
 
-        display.setValue ("New verb added: " + verb.stem + verb.ending);
-        
+        FORM_DISPLAY_RANGE.setValue ("New verb added: " + verb.stem + verb.ending);
+
         return true;
 
     }

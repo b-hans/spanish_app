@@ -8,7 +8,8 @@ function getResponse (params) {
         FORM_DISPLAY_RANGE
             .setBorder(false, false, false, false, false, false)
             .setBackground(FORM_BACK)
-            .breakApart();
+            .breakApart()
+            .setValue("");
 
         FORM_SHORT_DISPLAY.merge()
             .setBackground('#ffffff')
@@ -33,7 +34,7 @@ function getResponse (params) {
         FORM_RESPONSE_RANGE.setDataValidation(ADD_VERB_RULE)
             .setValue("Select one");
 
-        display.setValue ("Response required\n" + params.message);
+        FORM_SHORT_DISPLAY.setValue ("Response required\n" + params.message);
 
         return true;
     }
