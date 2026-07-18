@@ -65,6 +65,7 @@ function reBuildVerbForm () {
 
             )
             .setFontColor(DISPLAY_FONT_COLOR)
+            .setWrap(true);
             .setValue ("Messages here");
 
         CACHE.put("CURRENT_TYPE", "form1", 3600);

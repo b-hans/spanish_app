@@ -22,6 +22,7 @@ function getResponse (params) {
                 FORM_DISPLAY_BORDERS[6],
                 FORM_DISPLAY_BORDERS[7],
             )
+            .setWrap(true);
 
         FORM_RESPONSE_RANGE.merge()
             .setBackground("#e3c6c3")

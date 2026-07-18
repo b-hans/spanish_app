@@ -13,7 +13,7 @@ function responseAction (e) {
                 return resetResponse();
 
             case "Yes, add this verb":
-                return true;
+                return addVerb ();
 
             default:
                 return true;

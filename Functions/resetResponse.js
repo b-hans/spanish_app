@@ -18,7 +18,8 @@ function resetResponse() {
                 FORM_DISPLAY_BORDERS[5],
                 FORM_DISPLAY_BORDERS[6],
                 FORM_DISPLAY_BORDERS[7],
-            );
+            )
+            .setWrap(true);
 
 
         INFINITIVE_INPUT_RANGE.activate();
