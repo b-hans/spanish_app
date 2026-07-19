@@ -1,6 +1,8 @@
 function getResponse (params) {
     
     const display = FORMSHEET.getRange(FORM_DISPLAY_RANGE_A1);
+    const rule = params.rule;
+    const message = params.message;
   
     try {
 
@@ -31,10 +33,10 @@ function getResponse (params) {
             .setVerticalAlignment("middle")
             .setHorizontalAlignment("center");
 
-        FORM_RESPONSE_RANGE.setDataValidation(ADD_VERB_RULE)
+        FORM_RESPONSE_RANGE.setDataValidation(rule)
             .setValue("Select one");
 
-        FORM_SHORT_DISPLAY.setValue ("Response required\n" + params.message);
+        FORM_SHORT_DISPLAY.setValue ("Response required\n" + message);
 
         return true;
     }

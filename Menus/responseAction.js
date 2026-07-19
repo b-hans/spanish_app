@@ -15,6 +15,11 @@ function responseAction (e) {
             case "Yes, add this verb":
                 return addVerb ();
 
+            case "Yes, cancel":
+                reBuildVerbForm();
+                FORM_DISPLAY_RANGE.setValue ("Canceled");
+                return true;
+
             default:
                 return true;
 

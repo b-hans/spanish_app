@@ -31,6 +31,44 @@ const INFINITIVE_TITLE_RANGE = FORMSHEET.getRange("B5");
 const INFINITIVE_INPUT_RANGE = FORMSHEET.getRange("C5");
 const VERB_TYPE_TITLE_RANGE =  FORMSHEET.getRange("E5");
 const VERB_TYPE_INPUT_RANGE = FORMSHEET.getRange("F5");
+const CURRENT_VERBS_TITLE_RANGE = FORMSHEET.getRange("B7");
+const CURRENT_VERBS_INPUT_RANGE = FORMSHEET.getRange("C7:D8");
+const PRONOUN_RANGE = FORMSHEET.getRange(6, 1, 6, 1);
+const PRONOUN_RANGE_ARRAY = [
+    ['yo'],
+    ['tú'],
+    ['él/ella/Ud.'],
+    ['nosotros'],
+    ['vosotros'],
+    ['ellos/ellas/Uds.']
+];
+const VERB_HEADING_RANGE = FORMSHEET.getRange(4, 2, 1, 3);
+const VERB_HEADING_ARRAY = [
+    'Infinitive',
+    'Participle',
+    'Past Participle'
+];
+const VERB_VALUE_RANGE = FORMSHEET.getRange(5, 2, 1, 3);
+const VERB_ACTIONS_RANGE = FORMSHEET.getRange("E4:F4");
+const VERB_ACTIONS_DROP_RANGE = FORMSHEET.getRange("E5:F5");
+const VERB_ACTIONS = [
+    'Select one',
+    'Cancel',
+    'Indicative',
+    'Subjective',
+    'Imperative',
+    'Progressive',
+    'Perfect',
+    'Perfect Subjunctive'
+];
+const VERB_ACTIONS_RULE = SpreadsheetApp.newDataValidation()
+    .requireValueInList(VERB_ACTIONS, true)
+    .setAllowInvalid(false)
+    .build();
+
+const VERB_INFINITIVE = FORMSHEET.getRange("B5");
+const VERB_PARTICIPLE = FORMSHEET.getRange("C5");
+const VERB_PAST_PARTICIPLE = FORMSHEET.getRange("D5");
 
 // range a1 notation
 const FORM_RANGE_A1 = "A1:G22";
@@ -38,6 +76,8 @@ const FORM_TITLE_RANGE_A1 = "B2";
 const INFINITIVE_TITLE_RANGE_A1 = "B5";
 const VERB_TYPE_INPUT_A1 = "F5";
 const RESPONSE_A1 = "E10";
+const CURRENT_VERBS_INPUT_A1= "C7";
+const VERB_ACTIONS_A1 = "E5";
 
 // form styles
 const FORM_BACK = "#cfe2f3";
@@ -51,6 +91,7 @@ const FORM_TITLE_ROWHEIGHT = 65;
 const DISPLAY_FONT_COLOR = "#0b5394";
 
 const TITLES_BACKGROUND = "#f3f3f3";
+const CURRENT_VERB_DROPDOWN_BACK = "#fce5cd";
 
 // input validations
 const VERB_TYPE_RULE = SpreadsheetApp.newDataValidation()
@@ -63,4 +104,11 @@ const ADD_VERB_RULE = SpreadsheetApp.newDataValidation()
     .setAllowInvalid(false)
     .build();
 
+const CANCEL_RULE = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['Select one', 'Yes, cancel', 'No, return'], true)
+    .setAllowInvalid(false)
+    .build();
+
 const CACHE = CacheService.getScriptCache();
+
+

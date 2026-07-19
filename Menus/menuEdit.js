@@ -15,6 +15,16 @@ function menuEdit(e) {
                     case VERB_TYPE_INPUT_A1:                        
                         return verbType(e);
 
+                    case CURRENT_VERBS_INPUT_A1:
+                        return verbOut(e);
+
+                    case VERB_ACTIONS_A1:
+                        if (VERB_ACTIONS.includes(value) && value != "Select one") {
+                            return verbAction (e);
+                        }
+                        
+                        return true;
+
                     case RESPONSE_A1:
                         return responseAction(e);
                         
@@ -25,7 +35,7 @@ function menuEdit(e) {
                 return true;
 
             default: 
-                if (a1 == "A1" && value == "start"){
+                if (a1 == "A1" && value.toLowerCase() == "start"){
                     return reBuildVerbForm();
                 }
 

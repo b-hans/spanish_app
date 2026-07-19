@@ -68,12 +68,56 @@ function reBuildVerbForm () {
             .setWrap(true)
             .setValue ("Messages here");
 
+        // get the current verbs
+
+        CURRENT_VERBS_TITLE_RANGE.setBackground(TITLES_BACKGROUND)
+            .setHorizontalAlignment('right')
+            .setVerticalAlignment('top')
+            .setValue("Current verbs: ");
+
+        CURRENT_VERBS_INPUT_RANGE.merge()
+            .setHorizontalAlignment("center")
+            .setVerticalAlignment("middle")
+            .setBackground(CURRENT_VERB_DROPDOWN_BACK)
+            .setBorder(
+                true, true, true, true,
+                false, false,
+                '#000000',
+                SpreadsheetApp.BorderStyle.DOUBLE
+            );
+
+        // get current data
+        let verbData = REGULAR_VERBS.getDataRange().getValues();
+        let verbHeaders = verbData.shift();
+        let dropData = verbData.map (
+            row => row[verbHeaders.indexOf('Stem')] + row[verbHeaders.indexOf('Ending')]
+        );
+
+        dropData.sort();
+        dropData.unshift("Select one");
+
+        const currentVerbRule = SpreadsheetApp.newDataValidation()
+            .requireValueInList(dropData, true)
+            .setAllowInvalid(false)
+            .build();
+
+        CURRENT_VERBS_INPUT_RANGE.setDataValidation(currentVerbRule)
+            .setValue(dropData[0]);
+
+        console.log (dropData);
+
         CACHE.put("CURRENT_TYPE", "form1", 3600);
 
         let tester = CACHE.get("CURRENT_TYPE");
 
-        FORM_DISPLAY_RANGE.setValue (FORM_DISPLAY_RANGE.getValue() + " : " +
-            tester);
+        // FORM_DISPLAY_RANGE.setValue(
+        //     TEST_SHEET.getRange("C7").getBackground()
+        // );
+
+        // FORM_DISPLAY_RANGE.setValue (FORM_DISPLAY_RANGE.getValue() + " : " +
+        //     tester);
+
+        FORM_DISPLAY_RANGE.setValue ("Initialized! 55");
 
         INFINITIVE_INPUT_RANGE.activate();
         
