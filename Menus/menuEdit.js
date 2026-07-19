@@ -4,6 +4,7 @@ function menuEdit(e) {
     const display = FORM_DISPLAY_RANGE;
     const range = e.range;
     const a1 = range.getA1Notation();
+    const value = range.getValue();
     
     try {
 
@@ -24,6 +25,10 @@ function menuEdit(e) {
                 return true;
 
             default: 
+                if (a1 == "A1" && value == "start"){
+                    return reBuildVerbForm();
+                }
+
                 display.setValue("Default: " + CURRENT_TYPE);
         }
 
