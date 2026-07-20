@@ -15,6 +15,8 @@ function getResponse (params) {
 
         FORM_SHORT_DISPLAY.merge()
             .setBackground('#ffffff')
+            .setFontColor('#000000')
+            .setHorizontalAlignment('left')
             .setBorder(
                 FORM_DISPLAY_BORDERS[0],
                 FORM_DISPLAY_BORDERS[1],

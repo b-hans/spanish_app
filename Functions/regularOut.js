@@ -12,19 +12,19 @@ function regularOut (e) {
 
         working_verb.action = value
 
-        PRONOUN_RANGE.setValues(PRONOUN_RANGE_ARRAY)
-            .setBackground('#3c78d8')
-            .setFontColor('#ffffff')
-            .setHorizontalAlignment('right');
+        // PRONOUN_RANGE.setValues(PRONOUN_RANGE_ARRAY)
+        //     .setBackground('#3c78d8')
+        //     .setFontColor('#ffffff')
+        //     .setHorizontalAlignment('right');
 
-        TENSE_HEADING_RANGE.setValues([TENSE_ARRAY]);
-
-        console.log (working_verb);
+        // TENSE_HEADING_RANGE.setValues([TENSE_ARRAY])
+        //     .setHorizontalAlignment('center')
+        //     .setBackground('#000000')
+        //     .setFontColor('#ffffff');
 
         CACHE.put('working_verb', JSON.stringify(working_verb), 3600);
 
-        display.setValue ("Next");
-        return true;
+        return tenseOut();
     }
     catch (error) {
         display.setValue ("Error getting regular indicative: " + error);
