@@ -25,6 +25,7 @@ function verbType(e) {
         }
         else {
             INFINITIVE_INPUT_RANGE.setValue("");
+            CACHE.put('current_verb', JSON.stringify(validCheck), 3600);
         }
 
         switch (verb_type) {

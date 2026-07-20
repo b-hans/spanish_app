@@ -12,10 +12,13 @@ function regularVerbOut(params) {
         });
 
         if (myVerb.id) {
-            display.setValue ("Verb in the system");
+            display.setValue ("Verb in the system. Display details");
         }
         else {
-            display.setValue ("Verb is not in the system, we need to add it");
+            console.log ('check 1');
+            return getResponse({message: "'" + verbStem + 
+                verbEnding + "' is not in the system, would you like to add it?",
+                rule: ADD_VERB_RULE});
         }
         return true;
     }
