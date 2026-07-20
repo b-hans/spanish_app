@@ -33,7 +33,7 @@ const VERB_TYPE_TITLE_RANGE =  FORMSHEET.getRange("E5");
 const VERB_TYPE_INPUT_RANGE = FORMSHEET.getRange("F5");
 const CURRENT_VERBS_TITLE_RANGE = FORMSHEET.getRange("B7");
 const CURRENT_VERBS_INPUT_RANGE = FORMSHEET.getRange("C7:D8");
-const PRONOUN_RANGE = FORMSHEET.getRange(6, 1, 6, 1);
+const PRONOUN_RANGE = FORMSHEET.getRange(8, 1, 6, 1);
 const PRONOUN_RANGE_ARRAY = [
     ['yo'],
     ['tú'],
@@ -42,6 +42,8 @@ const PRONOUN_RANGE_ARRAY = [
     ['vosotros'],
     ['ellos/ellas/Uds.']
 ];
+const TENSE_HEADING_RANGE = FORMSHEET.getRange("B7:F7");
+const TENSE_ARRAY = ['Present', 'Preterite', 'Imperfect', 'Conditional', 'Future'];
 const VERB_HEADING_RANGE = FORMSHEET.getRange(4, 2, 1, 3);
 const VERB_HEADING_ARRAY = [
     'Infinitive',

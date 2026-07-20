@@ -1,6 +1,8 @@
 function resetResponse() {
     const display = FORMSHEET.getRange(FORM_DISPLAY_RANGE_A1);
 
+    const status = CACHE.get('CURRENT_TYPE');
+
     try {
 
         display.setValue ("Resetting....");
@@ -30,7 +32,12 @@ function resetResponse() {
             .setValue ("");
 
 
-        INFINITIVE_INPUT_RANGE.activate();
+        if (status == "regular_verb") {
+            VERB_ACTIONS_DROP_RANGE.activate();
+        }
+        else {
+            INFINITIVE_INPUT_RANGE.activate();
+        }
         
         return true;
     }

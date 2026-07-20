@@ -10,6 +10,9 @@ function menuEdit(e) {
 
         switch (CURRENT_TYPE) {
 
+            case "regular_verb":
+                return regularVerbMenu(e);
+
             case "form1":
                 switch (a1) {
                     case VERB_TYPE_INPUT_A1:                        

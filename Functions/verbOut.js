@@ -3,8 +3,8 @@ function verbOut (e) {
     const value = range.getValue();
     const a1 = range.getA1Notation();
     const display = FORMSHEET.getRange(FORM_DISPLAY_RANGE_A1);
-    const stem = value.slice(0, -2);
-    const ending = value.slice(-2);
+    // const stem = value.slice(0, -2);
+    // const ending = value.slice(-2);
 
     try {
 
@@ -12,12 +12,27 @@ function verbOut (e) {
             return true;
         }
 
+        display.setValue("Working....");
+
+        const infinitive = value;
+        const stem = infinitive.slice(0, -2);
+        const ending = infinitive.slice(-2);
+
+        const currentVerb = {
+            infinitive:  infinitive,
+            stem:        stem,
+            ending:      ending,
+            action:      "load_verb",
+        }
+
+        CACHE.put('working_verb', JSON.stringify(currentVerb), 3600);
+
         resetBody();
 
-        PRONOUN_RANGE.setValues(PRONOUN_RANGE_ARRAY)
-            .setBackground('#3c78d8')
-            .setFontColor('#ffffff')
-            .setHorizontalAlignment('right');
+        // PRONOUN_RANGE.setValues(PRONOUN_RANGE_ARRAY)
+        //     .setBackground('#3c78d8')
+        //     .setFontColor('#ffffff')
+        //     .setHorizontalAlignment('right');
 
         VERB_HEADING_RANGE.setValues([VERB_HEADING_ARRAY])
             .setBackground('#f3f3f3')
@@ -60,7 +75,9 @@ function verbOut (e) {
         VERB_PAST_PARTICIPLE.setValue (stem + pastParticipleEnd);
 
 
-        display.setValue ("Hey verb out: " + value);
+        CACHE.put('CURRENT_TYPE', 'regular_verb', 3600);
+
+        display.setValue ("");
         return true;
     }
     catch (error) {
