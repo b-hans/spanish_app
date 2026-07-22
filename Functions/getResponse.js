@@ -11,7 +11,7 @@ function getResponse (params) {
 
         if (status == "regular_verb") {
             let working_verb = JSON.parse(CACHE.get('working_verb'));
-            console.log (working_verb);
+            resetBody();
         }
 
         // break display apart

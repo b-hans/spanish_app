@@ -31,7 +31,8 @@ function regularVerbMenu (e) {
                 switch (value) {
 
                     case "No, return":
-                        return resetResponse();
+                        resetResponse();
+                        return loadVerbFromCache();
 
                     case "Yes, cancel":
                         reBuildVerbForm();
