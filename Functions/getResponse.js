@@ -3,8 +3,16 @@ function getResponse (params) {
     const display = FORMSHEET.getRange(FORM_DISPLAY_RANGE_A1);
     const rule = params.rule;
     const message = params.message;
+
+    const status = CACHE.get("CURRENT_TYPE");
+
   
     try {
+
+        if (status == "regular_verb") {
+            let working_verb = JSON.parse(CACHE.get('working_verb'));
+            console.log (working_verb);
+        }
 
         // break display apart
         FORM_DISPLAY_RANGE

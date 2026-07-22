@@ -1,10 +1,18 @@
-function verbOut (e) {
-    const range = e.range;
-    const value = range.getValue();
-    const a1 = range.getA1Notation();
+function verbOut (params) {
     const display = FORMSHEET.getRange(FORM_DISPLAY_RANGE_A1);
-    // const stem = value.slice(0, -2);
-    // const ending = value.slice(-2);
+    let value;
+    let verb_type;
+
+    if (params.e) {
+        const range = params.e.range;
+        value = range.getValue();
+        const a1 = range.getA1Notation();
+        verb_type = null;
+    }
+    else if (params.verb) {
+        value = params.verb.stem + params.verb.ending;
+        verb_type = params.verb.type;
+    }
 
     try {
 
@@ -23,16 +31,12 @@ function verbOut (e) {
             stem:        stem,
             ending:      ending,
             action:      "load_verb",
+            type:        verb_type,
         }
 
         CACHE.put('working_verb', JSON.stringify(currentVerb), 3600);
 
         resetBody();
-
-        // PRONOUN_RANGE.setValues(PRONOUN_RANGE_ARRAY)
-        //     .setBackground('#3c78d8')
-        //     .setFontColor('#ffffff')
-        //     .setHorizontalAlignment('right');
 
         VERB_HEADING_RANGE.setValues([VERB_HEADING_ARRAY])
             .setBackground('#f3f3f3')

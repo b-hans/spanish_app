@@ -5,8 +5,12 @@ function menuEdit(e) {
     const range = e.range;
     const a1 = range.getA1Notation();
     const value = range.getValue();
+
+    console.log ("check1", CURRENT_TYPE, a1, value);
     
     try {
+
+        display.setValue ("Working....");
 
         switch (CURRENT_TYPE) {
 
@@ -19,7 +23,7 @@ function menuEdit(e) {
                         return verbType(e);
 
                     case CURRENT_VERBS_INPUT_A1:
-                        return verbOut(e);
+                        return verbOut({e: e, verb: null});
 
                     case VERB_ACTIONS_A1:
                         if (VERB_ACTIONS.includes(value) && value != "Select one") {

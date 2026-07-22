@@ -36,6 +36,8 @@ function addVerb() {
             verbData[0].length
         ).setValues(verbData);
 
+        reBuildVerbForm();
+
         FORM_DISPLAY_RANGE.setValue ("New verb added: " + verb.stem + verb.ending);
 
         return true;

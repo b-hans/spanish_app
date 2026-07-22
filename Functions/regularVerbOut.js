@@ -12,7 +12,7 @@ function regularVerbOut(params) {
         });
 
         if (myVerb.id) {
-            display.setValue ("Verb in the system. Display details");
+            return verbOut({verb: myVerb, e: null});
         }
         else {
             console.log ('check 1');
