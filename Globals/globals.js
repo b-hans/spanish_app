@@ -5,6 +5,12 @@ const FORMSHEET = SpreadsheetApp.getActiveSpreadsheet()
 const AR_REGULAR = SpreadsheetApp.getActiveSpreadsheet()
     .getSheetByName("AR Regular Endings");
 
+const ER_REGULAR = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName("ER Regular Endings");
+
+const IR_REGULAR = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName("IR Regular Endings");
+
 const TEST_SHEET = SpreadsheetApp.getActiveSpreadsheet()
     .getSheetByName("Test Form");
 

@@ -24,8 +24,17 @@ function tenseOut () {
                 sheet = AR_REGULAR;
                 break;
 
+            case "er":
+                sheet = ER_REGULAR;
+                break;
+
+            case "ir":
+                sheet = IR_REGULAR;
+                break;
+
             default:
                 display.setValue (working_verb.ending + " sheet not there yet");
+                return true;
         }
 
 
@@ -37,8 +46,6 @@ function tenseOut () {
         const formSide = FORMSHEET.getRange("A8:A13").getValues();
 
         let tenseRangeData = [];
-
-        display.setValue("Start: ");
 
         for (let i=1; i<headers.length; i++) {
             let search1 = headers[i];
@@ -125,9 +132,10 @@ function tenseOut () {
             .setHorizontalAlignment("left")
             .setBackground('#f3f3f3');
 
-        console.log (outRowData);
+        display.setValue ("Done!");
+        // console.log (outRowData);
 
-        display.setValue ("check console 12");
+        // display.setValue ("check console 12");
 
         return true;
     }
