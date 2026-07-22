@@ -19,6 +19,8 @@ function tenseOut () {
         let sheet;
         let tense = working_verb.action;
 
+        console.log ("test", CACHE.get('working_action'));
+
         switch (working_verb.ending) {
             case "ar":
                 sheet = AR_REGULAR;
@@ -133,9 +135,6 @@ function tenseOut () {
             .setBackground('#f3f3f3');
 
         display.setValue ("Done!");
-        // console.log (outRowData);
-
-        // display.setValue ("check console 12");
 
         return true;
     }

@@ -104,8 +104,6 @@ function reBuildVerbForm () {
         CURRENT_VERBS_INPUT_RANGE.setDataValidation(currentVerbRule)
             .setValue(dropData[0]);
 
-        console.log (dropData);
-
         CACHE.put("CURRENT_TYPE", "form1", 3600);
 
         let tester = CACHE.get("CURRENT_TYPE");

@@ -15,7 +15,6 @@ function regularVerbOut(params) {
             return verbOut({verb: myVerb, e: null});
         }
         else {
-            console.log ('check 1');
             return getResponse({message: "'" + verbStem + 
                 verbEnding + "' is not in the system, would you like to add it?",
                 rule: ADD_VERB_RULE});

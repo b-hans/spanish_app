@@ -4,10 +4,15 @@ function regularVerbMenu (e) {
     const a1 = range.getA1Notation();
 
     const working_verb = JSON.parse(CACHE.get('working_verb'));
+    const working_action = CACHE.get('working_action');
 
     try {
 
         let display = FORM_DISPLAY_RANGE;
+
+        if (value == working_action) {
+            return true;
+        }
 
         switch (a1) {
             case VERB_ACTIONS_A1:
@@ -21,7 +26,7 @@ function regularVerbMenu (e) {
                         return getResponse({message: "Cancel, are you sure?", rule: CANCEL_RULE});
 
                     default:
-                        return regularOut(e);
+                        return regularOut({e: e, verb: null});
 
                 }
                 break;
@@ -32,7 +37,11 @@ function regularVerbMenu (e) {
 
                     case "No, return":
                         resetResponse();
-                        return loadVerbFromCache();
+                        verbOut({verb: working_verb, e: null});                        
+                        loadVerbFromCache();
+                        let current_action = CACHE.get('working_action');                        
+                        VERB_ACTIONS_DROP_RANGE.setValue(current_action);
+                        return true;
 
                     case "Yes, cancel":
                         reBuildVerbForm();

@@ -48,6 +48,8 @@ function getResponse (params) {
 
         FORM_SHORT_DISPLAY.setValue ("Response required\n" + message);
 
+        FORM_RESPONSE_RANGE.activate();
+
         return true;
     }
     catch (error) {

@@ -34,6 +34,8 @@ function verbOut (params) {
             type:        verb_type,
         }
 
+        console.log ("test here1", currentVerb);
+        
         CACHE.put('working_verb', JSON.stringify(currentVerb), 3600);
 
         resetBody();

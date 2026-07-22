@@ -5,8 +5,6 @@ function menuEdit(e) {
     const range = e.range;
     const a1 = range.getA1Notation();
     const value = range.getValue();
-
-    console.log ("check1", CURRENT_TYPE, a1, value);
     
     try {
 

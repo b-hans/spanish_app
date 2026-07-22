@@ -3,8 +3,9 @@ function loadVerbFromCache() {
     const display = FORM_DISPLAY_RANGE;
 
     try {
-        console.log (working_verb);
-        display.setValue("Load working verb");
+
+        regularOut({e: null});
+        
         return true;
     }
     catch (error) {

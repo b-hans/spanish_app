@@ -1,16 +1,26 @@
-function regularOut (e) {
+function regularOut (params) {
 
-    const range = e.range;
-    const value = range.getValue();
+    let value;
 
     let working_verb = JSON.parse(CACHE.get('working_verb'));
     let display = FORM_DISPLAY_RANGE;
+
+    if (params.e) {
+        const range = params.e.range;
+        value = range.getValue();
+
+        CACHE.put('working_action', value, 3600);
+
+    }
+    else {
+        value = working_verb.action;
+    }
 
     try {
 
         display.setValue("Working....");
 
-        working_verb.action = value
+        working_verb.action = value;
 
         CACHE.put('working_verb', JSON.stringify(working_verb), 3600);
 
