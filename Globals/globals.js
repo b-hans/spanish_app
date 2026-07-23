@@ -78,6 +78,9 @@ const VERB_INFINITIVE = FORMSHEET.getRange("B5");
 const VERB_PARTICIPLE = FORMSHEET.getRange("C5");
 const VERB_PAST_PARTICIPLE = FORMSHEET.getRange("D5");
 
+const TENSE_VERB_LABEL = FORMSHEET.getRange("B18");
+const TENSE_VERB_DROPDOWN = FORMSHEET.getRange("C18:D18");
+
 // range a1 notation
 const FORM_RANGE_A1 = "A1:G22";
 const FORM_TITLE_RANGE_A1 = "B2";

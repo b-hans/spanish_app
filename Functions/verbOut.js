@@ -83,6 +83,14 @@ function verbOut (params) {
 
         CACHE.put('CURRENT_TYPE', 'regular_verb', 3600);
 
+        // TENSE_VERB_LABEL.setBackground('#E4C2B2')
+        //     .setHorizontalAlignment("right")
+        //     .setValue("Current verbs: ");
+
+        // TENSE_VERB_DROPDOWN.merge()
+        //     .setBackground('#E5E5EF')
+        //     .setValue("Select one");
+
         display.setValue ("");
         return true;
     }
