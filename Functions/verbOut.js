@@ -33,8 +33,6 @@ function verbOut (params) {
             action:      "load_verb",
             type:        verb_type,
         }
-
-        console.log ("test here1", currentVerb);
         
         CACHE.put('working_verb', JSON.stringify(currentVerb), 3600);
 
@@ -83,13 +81,15 @@ function verbOut (params) {
 
         CACHE.put('CURRENT_TYPE', 'regular_verb', 3600);
 
-        // TENSE_VERB_LABEL.setBackground('#E4C2B2')
-        //     .setHorizontalAlignment("right")
-        //     .setValue("Current verbs: ");
+        TENSE_VERB_LABEL.setBackground('#E4C2B2')
+            .setHorizontalAlignment("right")
+            .setValue("Current verbs: ");
 
-        // TENSE_VERB_DROPDOWN.merge()
-        //     .setBackground('#E5E5EF')
-        //     .setValue("Select one");
+        TENSE_VERB_DROPDOWN.merge()
+            .setBackground('#E5E5EF')
+            .setValue("Select one");
+
+        getVerbDropdown({verb: value});
 
         display.setValue ("");
         return true;

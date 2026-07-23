@@ -19,8 +19,6 @@ function tenseOut () {
         let sheet;
         let tense = working_verb.action;
 
-        console.log ("test", CACHE.get('working_action'));
-
         switch (working_verb.ending) {
             case "ar":
                 sheet = AR_REGULAR;

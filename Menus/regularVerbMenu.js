@@ -10,9 +10,10 @@ function regularVerbMenu (e) {
 
         let display = FORM_DISPLAY_RANGE;
 
-        if (value == working_action) {
-            return true;
-        }
+        // if (value == working_action) {
+        //     console.log ("here1", value);
+        //     return true;
+        // }
 
         switch (a1) {
             case VERB_ACTIONS_A1:
