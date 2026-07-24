@@ -8,6 +8,10 @@ function regularVerbOut() {
 
     try {
 
+        display.setValue ("hey test");
+        console.log (CURRENT_TYPE);
+        return true;
+
         CURRENT_TYPE.type = "regular";
 
         CURRENT_TYPE.verb_id = getVerbId(CURRENT_TYPE);

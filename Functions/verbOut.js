@@ -9,19 +9,35 @@ function verbOut () {
 
         CURRENT_TYPE.status = "read_verb";
 
-        if (!CURRENT_TYPE.stem && (!CURRENT_TYPE.value || !CURRENT_TYPE.value == "Select one")) {
+        if (!CURRENT_TYPE.stem && (!CURRENT_TYPE.value || CURRENT_TYPE.value == "Select one")) {
             return true;
         }
 
         if (!CURRENT_TYPE.stem && CURRENT_TYPE.value) {
-            
+
             // assign infinitive, stem, ending, type
             CURRENT_TYPE.infinitive = CURRENT_TYPE.value;
 
             CURRENT_TYPE.stem = CURRENT_TYPE.infinitive.slice (0, -2);
             CURRENT_TYPE.ending = CURRENT_TYPE.infinitive.slice (-2);
 
-            CURRENT_TYPE.type = "regular";
+            switch (CURRENT_TYPE.ending) {
+                case "ar":
+                    CURRENT_TYPE.participle = CURRENT_TYPE.stem + "ando";
+                    CURRENT_TYPE.past_particple = CURRENT_TYPE.stem + "ado";
+                    break;
+
+                default:
+                    CURRENT_TYPE.participle = CURRENT_TYPE.stem + "iendo";
+                    CURRENT_TYPE.past_particple = CURRENT_TYPE.stem + "ido";
+                    break;
+
+            }
+
+            // get id and type
+            let current_id = getVerbId(CURRENT_TYPE);
+            CURRENT_TYPE.type = current_id.type;
+            CURRENT_TYPE.verb_id = current_id.id;
 
         }
 
@@ -47,18 +63,18 @@ function verbOut () {
 
         VERB_ACTIONS_DROP_RANGE.activate()
 
-        switch (CURRENT_TYPE.ending) {
-            case "ar":
-                CURRENT_TYPE.participle = CURRENT_TYPE.stem + "ando";
-                CURRENT_TYPE.past_particple = CURRENT_TYPE.stem + "ado";
-                break;
+        // switch (CURRENT_TYPE.ending) {
+        //     case "ar":
+        //         CURRENT_TYPE.participle = CURRENT_TYPE.stem + "ando";
+        //         CURRENT_TYPE.past_particple = CURRENT_TYPE.stem + "ado";
+        //         break;
 
-            default:
-                CURRENT_TYPE.participle = CURRENT_TYPE.stem + "iendo";
-                CURRENT_TYPE.past_particple = CURRENT_TYPE.stem + "ido";
-                break;
+        //     default:
+        //         CURRENT_TYPE.participle = CURRENT_TYPE.stem + "iendo";
+        //         CURRENT_TYPE.past_particple = CURRENT_TYPE.stem + "ido";
+        //         break;
 
-        }
+        // }
 
         VERB_INFINITIVE.setValue(CURRENT_TYPE.infinitive);
         VERB_PARTICIPLE.setValue (CURRENT_TYPE.participle);

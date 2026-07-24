@@ -16,8 +16,8 @@ function menuEdit(e) {
 
         switch (CURRENT_TYPE.status) {
 
-            case "regular_verb":
-                return regularVerbMenu(e);
+            case "read_verb":
+                return regularVerbMenu();
 
             case "form":
                 switch (a1) {
@@ -29,10 +29,7 @@ function menuEdit(e) {
 
                     case VERB_ACTIONS_A1:
                         if (VERB_ACTIONS.includes(value) && value != "Select one") {
-
-                            display.setValue ("Verb action: value");
-
-                            // return verbAction (e);
+                            return verbAction (e);
                         }
                         
                         return true;

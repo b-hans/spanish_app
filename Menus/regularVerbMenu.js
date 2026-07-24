@@ -1,10 +1,13 @@
-function regularVerbMenu (e) {
-    const range = e.range;
-    const value = range.getValue();
-    const a1 = range.getA1Notation();
+function regularVerbMenu () {
 
-    const working_verb = JSON.parse(CACHE.get('working_verb'));
-    const working_action = CACHE.get('working_action');
+    let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
+
+    const range = CURRENT_TYPE.range;
+    const value = CURRENT_TYPE.value
+    const a1 = CURRENT_TYPE.a1
+
+    // const working_verb = JSON.parse(CACHE.get('working_verb'));
+    // const working_action = CACHE.get('working_action');
 
     try {
 
@@ -27,7 +30,10 @@ function regularVerbMenu (e) {
                         return getResponse({message: "Cancel, are you sure?", rule: CANCEL_RULE});
 
                     default:
-                        return regularOut({e: e, verb: null});
+                        display.setValue ("VERB ACTIOn: " + value);
+                        console.log (CURRENT_TYPE);
+                        return true;
+                        // return regularOut({e: e, verb: null});
 
                 }
                 break;
