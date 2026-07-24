@@ -1,7 +1,6 @@
 function resetResponse() {
     const display = FORMSHEET.getRange(FORM_DISPLAY_RANGE_A1);
-
-    const status = CACHE.get('CURRENT_TYPE');
+    const CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
 
     try {
 
@@ -31,8 +30,11 @@ function resetResponse() {
             .setWrap(true)
             .setValue ("");
 
-
-        if (status == "regular_verb") {
+        if (CURRENT_TYPE.status == "form") {
+            return reBuildVerbForm();
+        }
+        
+        if (CURRENT_TYPE.type == "regular") {
             VERB_ACTIONS_DROP_RANGE.activate();
         }
         else {

@@ -8,9 +8,6 @@ function addVerb() {
 
         display.setValue("Working....");
 
-        console.log ("check", CURRENT_TYPE);
-        return true;
-
         resetResponse();
 
         FORM_DISPLAY_RANGE.setValue ("Still working");
@@ -25,7 +22,7 @@ function addVerb() {
         const nextId = Math.max(...idsFlat) + 1;
 
         // new row
-        const newRow = [nextId, verb.stem, verb.ending];
+        const newRow = [nextId, CURRENT_TYPE.stem, CURRENT_TYPE.ending, CURRENT_TYPE.type];
 
         // add the new row to the data
         verbData.push(newRow);
@@ -43,7 +40,7 @@ function addVerb() {
 
         reBuildVerbForm();
 
-        FORM_DISPLAY_RANGE.setValue ("New verb added: " + verb.stem + verb.ending);
+        FORM_DISPLAY_RANGE.setValue ("New verb added: " + CURRENT_TYPE.infinitive);
 
         return true;
 

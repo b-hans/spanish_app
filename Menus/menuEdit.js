@@ -29,7 +29,10 @@ function menuEdit(e) {
 
                     case VERB_ACTIONS_A1:
                         if (VERB_ACTIONS.includes(value) && value != "Select one") {
-                            return verbAction (e);
+
+                            display.setValue ("Verb action: value");
+
+                            // return verbAction (e);
                         }
                         
                         return true;
