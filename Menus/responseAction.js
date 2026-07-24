@@ -1,6 +1,7 @@
 function responseAction (e) {
     const range = e.range;
     const value = range.getValue();
+    
     const display = FORM_SHORT_DISPLAY;
 
     try {

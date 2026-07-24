@@ -1,10 +1,15 @@
 function addVerb() {
-    const verb = JSON.parse(CACHE.get('current_verb'));
+    // const verb = JSON.parse(CACHE.get('current_verb'));
     let display = FORM_SHORT_DISPLAY;
+
+    let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
 
     try {
 
         display.setValue("Working....");
+
+        console.log ("check", CURRENT_TYPE);
+        return true;
 
         resetResponse();
 
