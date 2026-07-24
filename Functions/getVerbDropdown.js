@@ -1,11 +1,4 @@
 function getVerbDropdown (params) {
-    let verb;
-    if (params.verb) {
-        verb = params.verb;
-    }
-    else {
-        verb = null;
-    }
 
     const display = FORM_DISPLAY_RANGE;
 
@@ -22,9 +15,9 @@ function getVerbDropdown (params) {
             .setAllowInvalid(false)
             .build();
         
-        if (verb) {
+        if (params.infinitive) {
             TENSE_VERB_DROPDOWN.setDataValidation(verbRule)
-                .setValue(verb);
+                .setValue(params.infinitive);
         }
 
         return true;

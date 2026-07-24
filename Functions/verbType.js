@@ -1,8 +1,10 @@
-function verbType(e) {
+function verbType() {
 
     const display = FORM_DISPLAY_RANGE;
-    const range = e.range;
-    const verb_type = range.getValue();
+
+    let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
+    // const range = e.range;
+    const verb_type = CURRENT_TYPE.value;
 
     try {
 
@@ -25,13 +27,17 @@ function verbType(e) {
         }
         else {
             INFINITIVE_INPUT_RANGE.setValue("");
-            CACHE.put('current_verb', JSON.stringify(validCheck), 3600);
+            CURRENT_TYPE.infinitive = infinitive;
+            CURRENT_TYPE.stem = validCheck.stem;
+            CURRENT_TYPE.ending = validCheck.ending;
+
+            CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
         }
 
         switch (verb_type) {
 
             case "Regular":
-                return regularVerbOut({display: display, verb: validCheck});
+                return regularVerbOut();
 
             case "Irregular":
                 display.setValue ("Irregular: " +

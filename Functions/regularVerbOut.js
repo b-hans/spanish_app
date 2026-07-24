@@ -1,18 +1,22 @@
-function regularVerbOut(params) {
-    const display = params.display;
-    const verbStem = params.verb.stem;
-    const verbEnding = params.verb.ending;
+function regularVerbOut() {
+
+    let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
+    const display = FORM_DISPLAY_RANGE;
+
+    const verbStem = CURRENT_TYPE.stem; //params.verb.stem;
+    const verbEnding = CURRENT_TYPE.ending; // params.verb.ending;
 
     try {
 
-        let myVerb = new Verb({
-            stem:    verbStem, 
-            ending:  verbEnding,
-            type:    "regular"
-        });
+        CURRENT_TYPE.type = "regular";
 
-        if (myVerb.id) {
-            return verbOut({verb: myVerb, e: null});
+        CURRENT_TYPE.verb_id = getVerbId(CURRENT_TYPE);
+
+        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+
+
+        if (CURRENT_TYPE.verb_id) {
+            return verbOut();
         }
         else {
             return getResponse({message: "'" + verbStem + 
@@ -22,7 +26,7 @@ function regularVerbOut(params) {
         return true;
     }
     catch (error) {
-        display.setValue ("Error getting regular verb: " + error);
+        display.setValue (display.getValue() + " Error getting regular verb: " + error);
         return false;
     }
 }

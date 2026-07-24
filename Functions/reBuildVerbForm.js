@@ -104,9 +104,25 @@ function reBuildVerbForm () {
         CURRENT_VERBS_INPUT_RANGE.setDataValidation(currentVerbRule)
             .setValue(dropData[0]);
 
-        CACHE.put("CURRENT_TYPE", "form1", 3600);
+        const current_type = {
+            status:             "form",
+            type:               null,
+            tense:              null,
+            data:               null,
+            stem:               null,
+            ending:             null,
+            infinitive:         null,
+            range:              null,
+            a1:                 null,
+            value:              null,
+            verb_id:            null,
+            participle:         null,
+            past_participle:    null,
+        }
 
-        let tester = CACHE.get("CURRENT_TYPE");
+        CACHE.put("CURRENT_TYPE", JSON.stringify(current_type), 3600);
+
+        // let tester = CACHE.get("CURRENT_TYPE");
 
         // FORM_DISPLAY_RANGE.setValue(
         //     TEST_SHEET.getRange("C7").getBackground()
@@ -115,7 +131,7 @@ function reBuildVerbForm () {
         // FORM_DISPLAY_RANGE.setValue (FORM_DISPLAY_RANGE.getValue() + " : " +
         //     tester);
 
-        FORM_DISPLAY_RANGE.setValue ("Initialized! 55");
+        FORM_DISPLAY_RANGE.setValue ("Initialized! 9");
 
         INFINITIVE_INPUT_RANGE.activate();
         

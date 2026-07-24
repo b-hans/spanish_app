@@ -1,40 +1,29 @@
-function verbOut (params) {
-    const display = FORMSHEET.getRange(FORM_DISPLAY_RANGE_A1);
-    let value;
-    let verb_type;
+function verbOut () {
+    const display = FORM_DISPLAY_RANGE;
 
-    if (params.e) {
-        const range = params.e.range;
-        value = range.getValue();
-        const a1 = range.getA1Notation();
-        verb_type = null;
-    }
-    else if (params.verb) {
-        value = params.verb.stem + params.verb.ending;
-        verb_type = params.verb.type;
-    }
+    let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
 
     try {
 
-        if (!value || value == "Select one") {
+        display.setValue("Working....");
+
+        CURRENT_TYPE.status = "read_verb";
+
+        if (!CURRENT_TYPE.stem && (!CURRENT_TYPE.value || !CURRENT_TYPE.value == "Select one")) {
             return true;
         }
 
-        display.setValue("Working....");
+        if (!CURRENT_TYPE.stem && CURRENT_TYPE.value) {
+            
+            // assign infinitive, stem, ending, type
+            CURRENT_TYPE.infinitive = CURRENT_TYPE.value;
 
-        const infinitive = value;
-        const stem = infinitive.slice(0, -2);
-        const ending = infinitive.slice(-2);
+            CURRENT_TYPE.stem = CURRENT_TYPE.infinitive.slice (0, -2);
+            CURRENT_TYPE.ending = CURRENT_TYPE.infinitive.slice (-2);
 
-        const currentVerb = {
-            infinitive:  infinitive,
-            stem:        stem,
-            ending:      ending,
-            action:      "load_verb",
-            type:        verb_type,
+            CURRENT_TYPE.type = "regular";
+
         }
-        
-        CACHE.put('working_verb', JSON.stringify(currentVerb), 3600);
 
         resetBody();
 
@@ -58,28 +47,24 @@ function verbOut (params) {
 
         VERB_ACTIONS_DROP_RANGE.activate()
 
-        let participleEnd;
-        let pastParticipleEnd;
-
-        switch (ending) {
+        switch (CURRENT_TYPE.ending) {
             case "ar":
-                participleEnd = "ando";
-                pastParticipleEnd = "ado";
+                CURRENT_TYPE.participle = CURRENT_TYPE.stem + "ando";
+                CURRENT_TYPE.past_particple = CURRENT_TYPE.stem + "ado";
                 break;
 
             default:
-                participleEnd = "iendo";
-                pastParticipleEnd = "ido";
+                CURRENT_TYPE.participle = CURRENT_TYPE.stem + "iendo";
+                CURRENT_TYPE.past_particple = CURRENT_TYPE.stem + "ido";
                 break;
 
         }
 
-        VERB_INFINITIVE.setValue(value);
-        VERB_PARTICIPLE.setValue (stem + participleEnd);
-        VERB_PAST_PARTICIPLE.setValue (stem + pastParticipleEnd);
+        VERB_INFINITIVE.setValue(CURRENT_TYPE.infinitive);
+        VERB_PARTICIPLE.setValue (CURRENT_TYPE.participle);
+        VERB_PAST_PARTICIPLE.setValue (CURRENT_TYPE.past_particple);
 
-
-        CACHE.put('CURRENT_TYPE', 'regular_verb', 3600);
+        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
         TENSE_VERB_LABEL.setBackground('#E4C2B2')
             .setHorizontalAlignment("right")
@@ -89,9 +74,10 @@ function verbOut (params) {
             .setBackground('#E5E5EF')
             .setValue("Select one");
 
-        getVerbDropdown({verb: value});
+        getVerbDropdown(CURRENT_TYPE);
 
         display.setValue ("");
+
         return true;
     }
     catch (error) {

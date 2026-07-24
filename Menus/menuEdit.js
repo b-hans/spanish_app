@@ -1,6 +1,6 @@
 function menuEdit(e) {
 
-    const CURRENT_TYPE = CACHE.get('CURRENT_TYPE');
+    let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
     const display = FORM_DISPLAY_RANGE;
     const range = e.range;
     const a1 = range.getA1Notation();
@@ -8,20 +8,24 @@ function menuEdit(e) {
     
     try {
 
-        display.setValue ("Working....");
+        CURRENT_TYPE.range = range;
+        CURRENT_TYPE.a1 = a1;
+        CURRENT_TYPE.value = value;
 
-        switch (CURRENT_TYPE) {
+        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+
+        switch (CURRENT_TYPE.status) {
 
             case "regular_verb":
                 return regularVerbMenu(e);
 
-            case "form1":
+            case "form":
                 switch (a1) {
                     case VERB_TYPE_INPUT_A1:                        
-                        return verbType(e);
+                        return verbType();
 
                     case CURRENT_VERBS_INPUT_A1:
-                        return verbOut({e: e, verb: null});
+                        return verbOut();
 
                     case VERB_ACTIONS_A1:
                         if (VERB_ACTIONS.includes(value) && value != "Select one") {
