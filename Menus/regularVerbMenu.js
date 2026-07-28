@@ -53,7 +53,10 @@ function regularVerbMenu () {
 
             case NEW_VERB_A1:
                 let current = new typeObject({value: value});
-                break;
+                CURRENT_TYPE = current.current_type;
+
+                CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+                return verbOut()
 
             default:
                 display.setValue("case " + a1);

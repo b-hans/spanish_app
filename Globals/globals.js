@@ -17,7 +17,7 @@ const TEST_SHEET = SpreadsheetApp.getActiveSpreadsheet()
 // Regular verbs
 const REGULAR_VERBS = SpreadsheetApp.getActiveSpreadsheet()
     .getSheetByName("Regular verbs");
-const REGULAR_VERBS_HEADINGS = ['ID', 'Stem', 'Ending'];
+const REGULAR_VERBS_HEADINGS = ['ID', 'Stem', 'Ending', 'Type'];
 
 
 // displays
