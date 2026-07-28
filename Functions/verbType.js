@@ -31,7 +31,7 @@ function verbType() {
         else {
             // asign the input verb
             INFINITIVE_INPUT_RANGE.setValue("");
-            CURRENT_TYPE.infinitive = infinitive;
+            CURRENT_TYPE.infinitive = infinitive.toLowerCase();
             CURRENT_TYPE.stem = validCheck.stem;
             CURRENT_TYPE.ending = validCheck.ending;
 

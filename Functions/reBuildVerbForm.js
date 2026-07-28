@@ -112,7 +112,6 @@ function reBuildVerbForm () {
             stem:               null,
             ending:             null,
             infinitive:         null,
-            range:              null,
             a1:                 null,
             value:              null,
             verb_id:            null,

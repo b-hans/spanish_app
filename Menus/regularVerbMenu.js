@@ -2,7 +2,6 @@ function regularVerbMenu () {
 
     let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
 
-    // const range = CURRENT_TYPE.range;
     const value = CURRENT_TYPE.value
     const a1 = CURRENT_TYPE.a1
 
@@ -22,10 +21,9 @@ function regularVerbMenu () {
                         return getResponse({message: "Cancel, are you sure?", rule: CANCEL_RULE});
 
                     default:
-                        display.setValue ("VERB ACTIOn: " + value);
-                        console.log (CURRENT_TYPE);
-                        return true;
-                        // return regularOut({e: e, verb: null});
+                        CURRENT_TYPE.tense = value;
+                        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+                        return verbOut();
 
                 }
                 break;
@@ -51,6 +49,10 @@ function regularVerbMenu () {
                         return true;
                 }
 
+                break;
+
+            case NEW_VERB_A1:
+                let current = new typeObject({value: value});
                 break;
 
             default:

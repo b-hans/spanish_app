@@ -7,6 +7,7 @@ function verbOut () {
 
         display.setValue("Working....");
 
+        // from dropdown or from new enter
         if (CURRENT_TYPE.status == "form") {
 
             if (!CURRENT_TYPE.stem && (!CURRENT_TYPE.value || CURRENT_TYPE.value == "Select one")) {
@@ -38,12 +39,9 @@ function verbOut () {
             CURRENT_TYPE.type = current_id.type;
             CURRENT_TYPE.verb_id = current_id.id;
 
-            console.log (CURRENT_TYPE);
-            display.setValue ("from form");
-
         }
+        // new verb
         else if (CURRENT_TYPE.status == "new_verb") {
-            console.log (CURRENT_TYPE);
             display.setValue (CURRENT_TYPE.status);
         }
 
@@ -90,9 +88,24 @@ function verbOut () {
 
         getVerbDropdown(CURRENT_TYPE);
 
-        display.setValue ("");
+        switch (CURRENT_TYPE.tense) {
 
-        return true;
+            case "Indicative":
+                return loadIndicative();
+
+            case "Subjunctive":
+            case "Imperative":
+            case "Progressive":
+            case "Perfect":
+            case "Perfect Subjunctive:":
+                display.setValue ("Tense: " + CURRENT_TYPE.tense);
+                return true;
+
+            default:
+                display.setValue ("Verb loaded");
+                return true;
+        }
+
     }
     catch (error) {
         display.setValue ("Error getting verb information: " + error);

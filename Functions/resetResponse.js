@@ -35,15 +35,10 @@ function resetResponse() {
             .setWrap(true)
             .setValue ("");
 
-        if (CURRENT_TYPE.status == 'read_verb' && !CURRENT_TYPE.tense) {
+        if (CURRENT_TYPE.status == 'read_verb') {
             verbOut();
             VERB_ACTIONS_DROP_RANGE.activate();
             FORM_DISPLAY_RANGE.setValue ("");
-            return true;
-        }
-
-        if (CURRENT_TYPE.status == "read_verb") {
-            VERB_ACTIONS_DROP_RANGE.activate();
         }
         else {
             INFINITIVE_INPUT_RANGE.activate();

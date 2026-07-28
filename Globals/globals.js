@@ -63,7 +63,7 @@ const VERB_ACTIONS = [
     'Select one',
     'Cancel',
     'Indicative',
-    'Subjective',
+    'Subjunctive',
     'Imperative',
     'Progressive',
     'Perfect',
@@ -89,6 +89,7 @@ const VERB_TYPE_INPUT_A1 = "F5";
 const RESPONSE_A1 = "E10";
 const CURRENT_VERBS_INPUT_A1= "C7";
 const VERB_ACTIONS_A1 = "E5";
+const NEW_VERB_A1 = "C18";
 
 // form styles
 const FORM_BACK = "#cfe2f3";

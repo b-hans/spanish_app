@@ -15,7 +15,20 @@ function regularVerbOut() {
 
         if (CURRENT_TYPE.verb_id) {
 
-            CURRENT_TYPE.status = "verb_details";
+            CURRENT_TYPE.status = "read_verb";
+
+            switch (CURRENT_TYPE.ending) {
+                case "ar":
+                    CURRENT_TYPE.participle = CURRENT_TYPE.stem + "ando";
+                    CURRENT_TYPE.past_participle = CURRENT_TYPE.stem + "ado";
+                    break;
+
+                default:
+                    CURRENT_TYPE.participle = CURRENT_TYPE.stem + "iendo";
+                    CURRENT_TYPE.past_participle = CURRENT_TYPE.stem + "ido";
+                    break;
+
+            }
 
             CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 

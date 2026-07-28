@@ -1,9 +1,10 @@
-function tenseOut () {
-    let working_verb = JSON.parse(CACHE.get('working_verb'));
-    let display = FORM_DISPLAY_RANGE;
+function loadIndicative () {
+    let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
+    display = FORM_DISPLAY_RANGE;
 
     try {
 
+        // get the data
         display.setValue("Loading the verb tense");
 
         PRONOUN_RANGE.setValues(PRONOUN_RANGE_ARRAY)
@@ -17,9 +18,9 @@ function tenseOut () {
             .setFontColor('#ffffff');
 
         let sheet;
-        let tense = working_verb.action;
+        let tense = CURRENT_TYPE.tense;
 
-        switch (working_verb.ending) {
+        switch (CURRENT_TYPE.ending) {
             case "ar":
                 sheet = AR_REGULAR;
                 break;
@@ -33,8 +34,15 @@ function tenseOut () {
                 break;
 
             default:
-                display.setValue (working_verb.ending + " sheet not there yet");
+                display.setValue (CURRENT_TYPE.ending + " sheet not there yet");
                 return true;
+        }
+
+        if (CURRENT_TYPE.data) {
+            FORMSHEET.getRange("B8:F13").setValues(CURRENT_TYPE.data)
+                .setBackground('#f3f3f3');
+
+            return true;
         }
 
         const data = sheet.getDataRange().getValues();
@@ -55,7 +63,7 @@ function tenseOut () {
 
             for (let j=1; j<sideMenu.length; j++) {
                 let search2 = sideMenu[j];
-                row[search2] = working_verb.stem + data[j][i];
+                row[search2] = CURRENT_TYPE.stem + data[j][i];
             }
             
             tenseRangeData.push(row);
@@ -131,12 +139,17 @@ function tenseOut () {
             .setHorizontalAlignment("left")
             .setBackground('#f3f3f3');
 
-        display.setValue ("Done!");
+        // save the data
+        CURRENT_TYPE.data = outRowData;
+
+        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+
+        display.setValue ("Verb tense loaded!");
 
         return true;
     }
     catch (error) {
-        display.setValue ("Error getting verb tense: " + error);
+        display.setValue ("Error loading tense: " + error);
         return false;
     }
 }

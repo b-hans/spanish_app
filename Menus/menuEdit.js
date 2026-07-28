@@ -8,7 +8,6 @@ function menuEdit(e) {
     
     try {
 
-        CURRENT_TYPE.range = range;
         CURRENT_TYPE.a1 = a1;
         CURRENT_TYPE.value = value;
 
