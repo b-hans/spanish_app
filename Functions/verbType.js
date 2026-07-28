@@ -41,7 +41,7 @@ function verbType() {
         switch (verb_type) {
 
             case "Regular":
-                return regularVerbOut();
+                return typeVerbOut();
 
             // future development here
             case "Irregular":

@@ -1,4 +1,4 @@
-function regularVerbOut() {
+function typeVerbOut() {
 
     let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
     const display = FORM_DISPLAY_RANGE;
