@@ -33,12 +33,7 @@ function regularVerbMenu () {
                 switch (value) {
 
                     case "No, return":
-                        resetResponse();
-                        verbOut({verb: working_verb, e: null});                        
-                        loadVerbFromCache();
-                        let current_action = CACHE.get('working_action');                        
-                        VERB_ACTIONS_DROP_RANGE.setValue(current_action);
-                        return true;
+                        return resetResponse();
 
                     case "Yes, cancel":
                         reBuildVerbForm();
