@@ -14,6 +14,10 @@ function menuEdit(e) {
 
         CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
+        if (CURRENT_TYPE.a1 == RESPONSE_A1) {
+            return responseAction(e);
+        }
+
         switch (CURRENT_TYPE.status) {
 
             case "read_verb":
@@ -34,9 +38,6 @@ function menuEdit(e) {
                         
                         return true;
 
-                    case RESPONSE_A1:
-                        return responseAction(e);
-                        
                     default:
                         return true;
                 }

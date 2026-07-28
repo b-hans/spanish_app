@@ -122,16 +122,7 @@ function reBuildVerbForm () {
 
         CACHE.put("CURRENT_TYPE", JSON.stringify(current_type), 3600);
 
-        // let tester = CACHE.get("CURRENT_TYPE");
-
-        // FORM_DISPLAY_RANGE.setValue(
-        //     TEST_SHEET.getRange("C7").getBackground()
-        // );
-
-        // FORM_DISPLAY_RANGE.setValue (FORM_DISPLAY_RANGE.getValue() + " : " +
-        //     tester);
-
-        FORM_DISPLAY_RANGE.setValue ("Initialized! 9");
+        FORM_DISPLAY_RANGE.setValue ("Initialized!");
 
         INFINITIVE_INPUT_RANGE.activate();
         

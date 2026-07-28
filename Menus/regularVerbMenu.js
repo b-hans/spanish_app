@@ -2,21 +2,13 @@ function regularVerbMenu () {
 
     let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
 
-    const range = CURRENT_TYPE.range;
+    // const range = CURRENT_TYPE.range;
     const value = CURRENT_TYPE.value
     const a1 = CURRENT_TYPE.a1
 
-    // const working_verb = JSON.parse(CACHE.get('working_verb'));
-    // const working_action = CACHE.get('working_action');
+    let display = FORM_DISPLAY_RANGE;
 
     try {
-
-        let display = FORM_DISPLAY_RANGE;
-
-        // if (value == working_action) {
-        //     console.log ("here1", value);
-        //     return true;
-        // }
 
         switch (a1) {
             case VERB_ACTIONS_A1:
@@ -26,7 +18,7 @@ function regularVerbMenu () {
                         return true;
 
                     case "Cancel":
-                        range.setValue("Select one");
+                        FORMSHEET.getRange(CURRENT_TYPE.a1).setValue("Select one");
                         return getResponse({message: "Cancel, are you sure?", rule: CANCEL_RULE});
 
                     default:

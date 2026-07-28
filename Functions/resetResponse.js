@@ -4,6 +4,11 @@ function resetResponse() {
 
     try {
 
+
+        if (CURRENT_TYPE.status == "new_verb") {
+            return reBuildVerbForm();
+        }
+
         display.setValue ("Resetting....");
 
         FORM_RESPONSE_RANGE.clearContent().clearDataValidations()
@@ -30,11 +35,14 @@ function resetResponse() {
             .setWrap(true)
             .setValue ("");
 
-        if (CURRENT_TYPE.status == "form") {
-            return reBuildVerbForm();
+        if (CURRENT_TYPE.status == 'read_verb' && !CURRENT_TYPE.tense) {
+            verbOut();
+            VERB_ACTIONS_DROP_RANGE.activate();
+            FORM_DISPLAY_RANGE.setValue ("");
+            return true;
         }
-        
-        if (CURRENT_TYPE.type == "regular") {
+
+        if (CURRENT_TYPE.status == "read_verb") {
             VERB_ACTIONS_DROP_RANGE.activate();
         }
         else {

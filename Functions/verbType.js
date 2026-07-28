@@ -3,7 +3,6 @@ function verbType() {
     const display = FORM_DISPLAY_RANGE;
 
     let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
-    // const range = e.range;
     const verb_type = CURRENT_TYPE.value;
 
     try {
@@ -15,17 +14,22 @@ function verbType() {
             return true;
         }
 
+        // reset the menu dropdown
         VERB_TYPE_INPUT_RANGE.setValue ("Select one");
 
         // validate input
         const infinitive = INFINITIVE_INPUT_RANGE.getValue();
+
+        // checking the input here (from C5)
         const validCheck = validateVerb({display: display, verb: infinitive});
 
         if (!validCheck.valid) {
+            // not valid
             display.setValue(validCheck.message);
             return true;
         }
         else {
+            // asign the input verb
             INFINITIVE_INPUT_RANGE.setValue("");
             CURRENT_TYPE.infinitive = infinitive;
             CURRENT_TYPE.stem = validCheck.stem;
@@ -39,6 +43,7 @@ function verbType() {
             case "Regular":
                 return regularVerbOut();
 
+            // future development here
             case "Irregular":
                 display.setValue ("Irregular: " +
                     validCheck.stem + " : " + validCheck.ending

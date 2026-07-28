@@ -1,7 +1,6 @@
 function addVerb() {
-    // const verb = JSON.parse(CACHE.get('current_verb'));
-    let display = FORM_SHORT_DISPLAY;
 
+    let display = FORM_SHORT_DISPLAY;
     let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
 
     try {
@@ -38,11 +37,24 @@ function addVerb() {
             verbData[0].length
         ).setValues(verbData);
 
-        reBuildVerbForm();
+        CURRENT_TYPE.verb_id = nextId;
 
-        FORM_DISPLAY_RANGE.setValue ("New verb added: " + CURRENT_TYPE.infinitive);
+        switch (CURRENT_TYPE.ending) {
+            case "ar":
+                CURRENT_TYPE.participle = CURRENT_TYPE.stem + "ando";
+                CURRENT_TYPE.past_participle = CURRENT_TYPE.stem + "ado";
+                break;
 
-        return true;
+            default:
+                CURRENT_TYPE.participle = CURRENT_TYPE.stem + "iendo";
+                CURRENT_TYPE.past_participle = CURRENT_TYPE.stem + "ido";
+                break;
+
+        }
+
+        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+
+        return verbOut();
 
     }
     catch (error) {
