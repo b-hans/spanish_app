@@ -121,4 +121,23 @@ const CANCEL_RULE = SpreadsheetApp.newDataValidation()
 
 const CACHE = CacheService.getScriptCache();
 
+const irrOptions = [
+    'Select one',
+    'E to IE',
+    'O to UE',
+    'E to I',
+    'U to UE',
+    'GO verb',
+    'ZCO verb',
+    'C to QU',
+    'G to GU',
+    'Z to C',
+    'GER, GIR',
+    'Other'
+];
+
+const IRR_OPTIONS_RULE = SpreadsheetApp.newDataValidation()
+    .requireValueInList(irrOptions, true)
+    .setAllowInvalid(false)
+    .build();
 

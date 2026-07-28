@@ -58,12 +58,12 @@ function verbType() {
             case "irregular":
                 return typeVerbOut();
 
-            // future development here
-            case "Irregular":
-                display.setValue ("Irregular: " +
-                    validCheck.stem + " : " + validCheck.ending
-                );
-                break;
+            // // future development here
+            // case "Irregular":
+            //     display.setValue ("Irregular: " +
+            //         validCheck.stem + " : " + validCheck.ending
+            //     );
+            //     break;
 
             default:
                 display.setValue("Default: " + verb_type + " : " + 
