@@ -3,7 +3,8 @@ function verbType() {
     const display = FORM_DISPLAY_RANGE;
 
     let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
-    const verb_type = CURRENT_TYPE.value;
+    let verb_type = CURRENT_TYPE.value;
+    const a1 = CURRENT_TYPE.a1;
 
     try {
 
@@ -30,17 +31,31 @@ function verbType() {
         }
         else {
             // asign the input verb
-            INFINITIVE_INPUT_RANGE.setValue("");
-            CURRENT_TYPE.infinitive = infinitive.toLowerCase();
-            CURRENT_TYPE.stem = validCheck.stem;
-            CURRENT_TYPE.ending = validCheck.ending;
+            let currentInputObj = new typeObject({value: infinitive.toLowerCase()});
 
+            if (currentInputObj.current_type.verb_id) {
+                CURRENT_TYPE = currentInputObj.current_type;
+                CURRENT_TYPE.value = verb_type;
+                CURRENT_TYPE.a1 = a1;
+                verb_type = CURRENT_TYPE.type;
+            }
+            else {
+                CURRENT_TYPE.infinitive = infinitive.toLowerCase();
+                CURRENT_TYPE.stem = validCheck.stem;
+                CURRENT_TYPE.ending = validCheck.ending;
+            }
+
+            INFINITIVE_INPUT_RANGE.setValue("");
             CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+
         }
 
         switch (verb_type) {
 
             case "Regular":
+            case "regular":
+            case "Irregular":
+            case "irregular":
                 return typeVerbOut();
 
             // future development here

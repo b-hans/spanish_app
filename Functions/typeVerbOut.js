@@ -8,35 +8,14 @@ function typeVerbOut() {
 
     try {
 
-        CURRENT_TYPE.type = "regular";
-
-        // does it exists, if yes then it will have an id
-        CURRENT_TYPE.verb_id = getVerbId(CURRENT_TYPE);
-
         if (CURRENT_TYPE.verb_id) {
-
-            CURRENT_TYPE.status = "read_verb";
-
-            switch (CURRENT_TYPE.ending) {
-                case "ar":
-                    CURRENT_TYPE.participle = CURRENT_TYPE.stem + "ando";
-                    CURRENT_TYPE.past_participle = CURRENT_TYPE.stem + "ado";
-                    break;
-
-                default:
-                    CURRENT_TYPE.participle = CURRENT_TYPE.stem + "iendo";
-                    CURRENT_TYPE.past_participle = CURRENT_TYPE.stem + "ido";
-                    break;
-
-            }
-
-            CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
             return verbOut();
         }
         else {
             
             CURRENT_TYPE.status = 'new_verb';
+            CURRENT_TYPE.type = CURRENT_TYPE.value.toLowerCase();
 
             CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 

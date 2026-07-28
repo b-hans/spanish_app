@@ -39,6 +39,11 @@ function addVerb() {
 
         CURRENT_TYPE.verb_id = nextId;
 
+        if (CURRENT_TYPE.type == "irregular") {
+            CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+            return irregularNew();
+        }
+
         switch (CURRENT_TYPE.ending) {
             case "ar":
                 CURRENT_TYPE.participle = CURRENT_TYPE.stem + "ando";
