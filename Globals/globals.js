@@ -11,6 +11,9 @@ const ER_REGULAR = SpreadsheetApp.getActiveSpreadsheet()
 const IR_REGULAR = SpreadsheetApp.getActiveSpreadsheet()
     .getSheetByName("IR Regular Endings");
 
+const CONJUGATION_TYPES = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName("conjugation types");
+
 const TEST_SHEET = SpreadsheetApp.getActiveSpreadsheet()
     .getSheetByName("Test Form");
 

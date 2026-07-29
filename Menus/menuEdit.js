@@ -8,6 +8,10 @@ function menuEdit(e) {
     
     try {
 
+        if (range.getSheet().getName() != "Forms") {
+            return true;
+        }
+
         CURRENT_TYPE.a1 = a1;
         CURRENT_TYPE.value = value;
 
@@ -45,15 +49,15 @@ function menuEdit(e) {
 
             case "new_verb":
             case "new_irr_one":
+            case "new_irr_indicative":
                 switch(a1) {
                     case VERB_TYPE_INPUT_A1:
                         return irregularAction()
 
                     default:
-                        display.setValue ("Test1: " + a1 + " : " + value);
+                        // display.setValue ("Test1: " + a1 + " : " + value);
                         return true;
                 }
-
                 
             default: 
                 if (a1 == "A1" && value.toLowerCase() == "start"){

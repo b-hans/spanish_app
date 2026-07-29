@@ -4,10 +4,22 @@ function irregularAction () {
 
     try {
 
+        VERB_TYPE_INPUT_RANGE.setValue("Select one");
+
         switch (CURRENT_TYPE.value) {
 
+            case "Select one":
+                return true;
+
+            case "Enter indicative":
+                return enterIrrIndicative()
+
+            case "Cancel":
+                display.setValue ("Cancel add irregular verb");
+                return true;
+
             case "Other":
-                CURRENT_TYPE.status = "new_err_indicative";
+                CURRENT_TYPE.status = "new_irr_indicative";
                 CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
                 return irrIndicativeOther();
 

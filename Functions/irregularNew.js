@@ -37,6 +37,27 @@ function irregularNew () {
             .setBackground('#000000')
             .setFontColor('#ffffff');
 
+        const participleData = [
+            'Infinitive',
+            'Participle',
+            'Past Participle'
+        ];
+
+        let participleHeading = FORMSHEET.getRange("B15:D15")
+            .setBackground(TITLES_BACKGROUND)
+            .setFontFamily('Arial')
+            .setFontSize(10)
+            .setHorizontalAlignment('center')
+            .setValues([participleData]);
+
+        let participleValues = FORMSHEET.getRange("B16:D16")
+            .setBackground('#fff2cc')
+            .setFontFamily('Arial')
+            .setFontSize(10)
+            .setHorizontalAlignment('center');
+
+        display.setValue ("Select type");
+
         return true;
     }
     catch (error) {
