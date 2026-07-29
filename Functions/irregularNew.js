@@ -27,9 +27,16 @@ function irregularNew () {
         VERB_TYPE_INPUT_RANGE.setDataValidation(IRR_OPTIONS_RULE)
             .setValue('Select one');
 
-        console.log (CURRENT_TYPE);
+        PRONOUN_RANGE.setValues(PRONOUN_RANGE_ARRAY)
+            .setBackground('#3c78d8')
+            .setFontColor('#ffffff')
+            .setHorizontalAlignment('right');
 
-        display.setValue ("Irregular form");
+        TENSE_HEADING_RANGE.setValues([TENSE_ARRAY])
+            .setHorizontalAlignment('center')
+            .setBackground('#000000')
+            .setFontColor('#ffffff');
+
         return true;
     }
     catch (error) {

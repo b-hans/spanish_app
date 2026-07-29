@@ -40,6 +40,7 @@ function addVerb() {
         CURRENT_TYPE.verb_id = nextId;
 
         if (CURRENT_TYPE.type == "irregular") {
+            CURRENT_TYPE.status = 'new_irr_one';
             CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
             return irregularNew();
         }

@@ -76,8 +76,6 @@ function verbOut () {
         VERB_PARTICIPLE.setValue (CURRENT_TYPE.participle);
         VERB_PAST_PARTICIPLE.setValue (CURRENT_TYPE.past_participle);
 
-        // CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
-
         TENSE_VERB_LABEL.setBackground('#E4C2B2')
             .setHorizontalAlignment("right")
             .setValue("Current verbs: ");

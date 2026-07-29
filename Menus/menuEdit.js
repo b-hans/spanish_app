@@ -44,16 +44,17 @@ function menuEdit(e) {
                 return true;
 
             case "new_verb":
+            case "new_irr_one":
                 switch(a1) {
                     case VERB_TYPE_INPUT_A1:
-                        display.setValue ("Type of irregular: " + value);
-                        return true;
-                        
+                        return irregularAction()
+
                     default:
                         display.setValue ("Test1: " + a1 + " : " + value);
                         return true;
                 }
 
+                
             default: 
                 if (a1 == "A1" && value.toLowerCase() == "start"){
                     return reBuildVerbForm();
