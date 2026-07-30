@@ -17,6 +17,9 @@ const CONJUGATION_TYPES = SpreadsheetApp.getActiveSpreadsheet()
 const IRREGULAR_TENSES = SpreadsheetApp.getActiveSpreadsheet()
     .getSheetByName('irregular tenses');
 
+const IRREGULAR_PARTICIPLES = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName('irregular participles');
+
 const TEST_SHEET = SpreadsheetApp.getActiveSpreadsheet()
     .getSheetByName("Test Form");
 

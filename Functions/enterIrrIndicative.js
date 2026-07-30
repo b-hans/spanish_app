@@ -6,7 +6,17 @@ function enterIrrIndicative () {
     try {
         display.setValue ("Working....");
 
-        // console.log (CURRENT_TYPE);
+        // add the participles
+        let participle = FORMSHEET.getRange("C16").getValue();
+        let past_participle = FORMSHEET.getRange("D16").getValue();
+        let participle_row = [CURRENT_TYPE.verb_id, participle, past_participle];
+
+        let currentParticiples = IRREGULAR_PARTICIPLES.getDataRange().getValues();
+        currentParticiples.push(participle_row);
+
+        IRREGULAR_PARTICIPLES.clearContents();
+        IRREGULAR_PARTICIPLES.getRange(1, 1, currentParticiples.length, currentParticiples[0].length)
+            .setValues(currentParticiples);
 
         // get the tense ids
         let conjugation_types = CONJUGATION_TYPES.getDataRange().getValues();
@@ -49,8 +59,10 @@ function enterIrrIndicative () {
         IRREGULAR_TENSES.getRange(1, 1, newTense.length, newTense[0].length)
             .setValues(newTense);
 
-        display.setValue("Data entered");
+        reBuildVerbForm();
 
+        display.setValue ("Irregular verb indicative added");
+        
         return true;
     }
     catch (error) {
