@@ -21,6 +21,7 @@ function verbType() {
         // validate input
         const infinitive = INFINITIVE_INPUT_RANGE.getValue();
 
+
         // checking the input here (from C5)
         const validCheck = validateVerb({display: display, verb: infinitive});
 
@@ -31,7 +32,8 @@ function verbType() {
         }
         else {
             // asign the input verb
-            let currentInputObj = new typeObject({value: infinitive.toLowerCase()});
+            CURRENT_TYPE.infinitive = infinitive.toLowerCase();
+            let currentInputObj = new typeObject(CURRENT_TYPE);
 
             if (currentInputObj.current_type.verb_id) {
                 CURRENT_TYPE = currentInputObj.current_type;

@@ -1,6 +1,8 @@
 class typeObject {
     constructor (params) {
 
+        let display = FORM_DISPLAY_RANGE;
+
         const stem = params.value.slice(0, -2);
         const ending = params.value.slice(-2);
 
@@ -52,7 +54,11 @@ class typeObject {
 
             }
         }
+        else if (!verb_id) {
+            return;
+        }
         else {
+
             let participles = IRREGULAR_PARTICIPLES.getDataRange().getValues();
             let myParticiples = participles.filter (row => row[0] == verb_id)[0];
 
@@ -61,6 +67,7 @@ class typeObject {
 
             let tenses = IRREGULAR_TENSES.getDataRange().getValues();
             this.current_type.tenses = tenses.filter(row => row[0] == verb_id);
+
 
         }
 
