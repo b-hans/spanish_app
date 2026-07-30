@@ -14,30 +14,7 @@ function verbOut () {
                 return true;
             }
 
-            // assign infinitive, stem, ending, type
-            CURRENT_TYPE.infinitive = CURRENT_TYPE.value;
-
-            CURRENT_TYPE.stem = CURRENT_TYPE.infinitive.slice (0, -2);
-            CURRENT_TYPE.ending = CURRENT_TYPE.infinitive.slice (-2);
-
-
-            switch (CURRENT_TYPE.ending) {
-                case "ar":
-                    CURRENT_TYPE.participle = CURRENT_TYPE.stem + "ando";
-                    CURRENT_TYPE.past_participle = CURRENT_TYPE.stem + "ado";
-                    break;
-
-                default:
-                    CURRENT_TYPE.participle = CURRENT_TYPE.stem + "iendo";
-                    CURRENT_TYPE.past_participle = CURRENT_TYPE.stem + "ido";
-                    break;
-
-            }
-
-            // get id and type
-            let current_id = getVerbId(CURRENT_TYPE);
-            CURRENT_TYPE.type = current_id.type;
-            CURRENT_TYPE.verb_id = current_id.id;
+            CURRENT_TYPE = (new typeObject (CURRENT_TYPE)).current_type;
 
         }
         // new verb

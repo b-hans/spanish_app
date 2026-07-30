@@ -117,6 +117,7 @@ function reBuildVerbForm () {
             verb_id:            null,
             participle:         null,
             past_participle:    null,
+            tenses:             [],
         }
 
         CACHE.put("CURRENT_TYPE", JSON.stringify(current_type), 3600);

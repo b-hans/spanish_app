@@ -22,19 +22,6 @@ class typeObject {
             type = foundVerb[0][headers.indexOf('Type')];
         }
 
-        switch (ending) {
-            case "ar":
-                participle = stem + "ando";
-                past_participle = stem + "ado";
-                break;
-
-            default:
-                participle = stem + "iendo";
-                past_participle = stem + "ido";
-                break;
-
-        }
-
         this.current_type = {
             status:             "read_verb",
             type:               type,
@@ -43,11 +30,38 @@ class typeObject {
             stem:               stem,
             ending:             ending,
             infinitive:         params.value,
-            a1:                 null,
-            value:              null,
+            a1:                 params.a1,
+            value:              params.value,
             verb_id:            verb_id,
-            participle:         participle,
-            past_participle:    past_participle,
+            participle:         null,
+            past_participle:    null,
+            tenses:             [],
+        }
+
+        if (type == "regular"){
+            switch (ending) {
+                case "ar":
+                    this.current_type.participle = stem + "ando";
+                    this.current_type.past_participle = stem + "ado";
+                    break;
+
+                default:
+                    this.current_type.participle = stem + "iendo";
+                    this.current_type.past_participle = stem + "ido";
+                    break;
+
+            }
+        }
+        else {
+            let participles = IRREGULAR_PARTICIPLES.getDataRange().getValues();
+            let myParticiples = participles.filter (row => row[0] == verb_id)[0];
+
+            this.current_type.participle = myParticiples[1];
+            this.current_type.past_participle = myParticiples[2];
+
+            let tenses = IRREGULAR_TENSES.getDataRange().getValues();
+            this.current_type.tenses = tenses.filter(row => row[0] == verb_id);
+
         }
 
     }
