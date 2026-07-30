@@ -66,7 +66,12 @@ function verbOut () {
         switch (CURRENT_TYPE.tense) {
 
             case "Indicative":
-                return loadIndicative();
+                if (CURRENT_TYPE.type == "regular") {
+                    return loadIndicative(CURRENT_TYPE);
+                }
+                else {
+                    return loadIrrIndicative(CURRENT_TYPE);
+                }
 
             case "Subjunctive":
             case "Imperative":

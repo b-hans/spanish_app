@@ -1,5 +1,4 @@
-function loadIndicative () {
-    let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
+function loadIndicative (CURRENT_TYPE) {
     display = FORM_DISPLAY_RANGE;
 
     try {
