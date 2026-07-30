@@ -2,8 +2,9 @@ function verbType() {
 
     const display = FORM_DISPLAY_RANGE;
 
-    let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
+    let CURRENT_TYPE = getCurrentType();
     let verb_type = CURRENT_TYPE.value;
+    CURRENT_TYPE.type = CURRENT_TYPE.value.toLowerCase();
     const a1 = CURRENT_TYPE.a1;
 
     try {
@@ -19,7 +20,8 @@ function verbType() {
         VERB_TYPE_INPUT_RANGE.setValue ("Select one");
 
         // validate input
-        const infinitive = INFINITIVE_INPUT_RANGE.getValue();
+        const infinitive = INFINITIVE_INPUT_RANGE.getValue().toLowerCase();
+        CURRENT_TYPE.infinitive = infinitive;
 
 
         // checking the input here (from C5)
@@ -32,19 +34,22 @@ function verbType() {
         }
         else {
             // asign the input verb
-            CURRENT_TYPE.infinitive = infinitive.toLowerCase();
+            CURRENT_TYPE.value = infinitive.toLowerCase();
+            
             let currentInputObj = new typeObject(CURRENT_TYPE);
 
             if (currentInputObj.current_type.verb_id) {
                 CURRENT_TYPE = currentInputObj.current_type;
+                // CURRENT_TYPE = currentInputObj.current_type;
                 CURRENT_TYPE.value = verb_type;
                 CURRENT_TYPE.a1 = a1;
                 verb_type = CURRENT_TYPE.type;
             }
             else {
-                CURRENT_TYPE.infinitive = infinitive.toLowerCase();
+                // CURRENT_TYPE.infinitive = infinitive.toLowerCase();
                 CURRENT_TYPE.stem = validCheck.stem;
                 CURRENT_TYPE.ending = validCheck.ending;
+                // CURRENT_TYPE.type = verb_type;
             }
 
             INFINITIVE_INPUT_RANGE.setValue("");

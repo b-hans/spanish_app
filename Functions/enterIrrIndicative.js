@@ -59,7 +59,15 @@ function enterIrrIndicative () {
         IRREGULAR_TENSES.getRange(1, 1, newTense.length, newTense[0].length)
             .setValues(newTense);
 
-        reBuildVerbForm();
+        CURRENT_TYPE = (new typeObject({value: CURRENT_TYPE.infinitive})).current_type;
+
+        CURRENT_TYPE.status = 'read_verb';
+        
+        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+
+        verbOut();
+
+        // reBuildVerbForm();
 
         display.setValue ("Irregular verb indicative added");
         

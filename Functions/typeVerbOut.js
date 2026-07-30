@@ -15,7 +15,7 @@ function typeVerbOut() {
         else {
             
             CURRENT_TYPE.status = 'new_verb';
-            CURRENT_TYPE.type = CURRENT_TYPE.value.toLowerCase();
+            // CURRENT_TYPE.type = CURRENT_TYPE.value.toLowerCase();
 
             CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 

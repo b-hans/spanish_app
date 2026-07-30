@@ -11,6 +11,8 @@ function addVerb() {
 
         FORM_DISPLAY_RANGE.setValue ("Still working");
 
+        console.log (CURRENT_TYPE);
+        
         let verbData = REGULAR_VERBS.getDataRange().getValues();
         let verbHeadings = verbData.shift();
 

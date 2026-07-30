@@ -18,6 +18,10 @@ function menuEdit(e) {
         CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
         if (CURRENT_TYPE.a1 == RESPONSE_A1) {
+            switch (CURRENT_TYPE.status) {
+                case "new_irr_indicative":
+                    return true;
+            }
             return responseAction(e);
         }
 

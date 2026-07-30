@@ -47,6 +47,7 @@ function regularVerbMenu () {
                 break;
 
             case NEW_VERB_A1:
+                // the object is only reading value at this point
                 let current = new typeObject({value: value});
                 CURRENT_TYPE = current.current_type;
 
