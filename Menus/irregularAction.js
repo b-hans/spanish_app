@@ -4,7 +4,7 @@ function irregularAction () {
 
     try {
 
-        VERB_TYPE_INPUT_RANGE.setValue("Select one");
+        VERB_SEARCH_INPUT_RANGE.setValue("Select one");
 
         switch (CURRENT_TYPE.value) {
 

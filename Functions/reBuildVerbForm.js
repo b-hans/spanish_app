@@ -35,18 +35,18 @@ function reBuildVerbForm () {
 
         INFINITIVE_INPUT_RANGE.setBackground('#ffffff');
 
-        VERB_TYPE_TITLE_RANGE.setBackground(TITLES_BACKGROUND)
+        VERB_SEARCH_TITLE_RANGE.setBackground(TITLES_BACKGROUND)
             .setHorizontalAlignment('right')
             .setVerticalAlignment('top')
             .setValue("Type: ");
 
-        VERB_TYPE_INPUT_RANGE.setBackground('#ffffff')
+        VERB_SEARCH_INPUT_RANGE.setBackground('#ffffff')
             .setVerticalAlignment('top')
             .setHorizontalAlignment('center');
 
         SpreadsheetApp.flush();
 
-        VERB_TYPE_INPUT_RANGE.setDataValidation(FORM_ACTION_RULE)
+        VERB_SEARCH_INPUT_RANGE.setDataValidation(FORM_ACTION_RULE)
             .setValue("Select one");
 
         // display

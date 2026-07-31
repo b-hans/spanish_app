@@ -1,7 +1,7 @@
 function addVerb() {
 
     let display = FORM_SHORT_DISPLAY;
-    let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
+    let CURRENT_TYPE = getCurrentType();
 
     try {
 

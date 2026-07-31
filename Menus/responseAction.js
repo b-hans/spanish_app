@@ -1,19 +1,19 @@
-function responseAction (e) {
-    const range = e.range;
-    const value = range.getValue();
+function responseAction () {
     
     const display = FORM_SHORT_DISPLAY;
+    let CURRENT_TYPE = getCurrentType();
 
     try {
 
         display.setValue ("Working....");
 
-        switch (value) {
+        switch (CURRENT_TYPE.value) {
 
             case "No, return":
                 return resetResponse();
 
             case "Yes, add this verb":
+                return formVerbType();                
                 return addVerb ();
 
             case "Yes, cancel":

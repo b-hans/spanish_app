@@ -17,33 +17,28 @@ function menuEdit(e) {
 
         CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
-        if (CURRENT_TYPE.a1 == RESPONSE_A1) {
-            switch (CURRENT_TYPE.status) {
-                case "new_irr_indicative":
-                    return true;
-            }
-            return responseAction(e);
+        if (CURRENT_TYPE.responseStatus) {
+            return responseAction();
         }
 
         switch (CURRENT_TYPE.status) {
+
+            case "add_type":
+                display.setValue ("hey add the verb type: " + value + " : " + a1);
+                console.log (CURRENT_TYPE);
+                return true;
 
             case "read_verb":
                 return regularVerbMenu();
 
             case "form":
                 switch (a1) {
-                    case VERB_TYPE_INPUT_A1:                        
-                        return verbType();
+                    case VERB_SEARCH_INPUT_A1:                        
+                        return verbSearch();
 
                     case CURRENT_VERBS_INPUT_A1:
                         return verbOut();
 
-                    case VERB_ACTIONS_A1:
-                        if (VERB_ACTIONS.includes(value) && value != "Select one") {
-                            return verbAction (e);
-                        }
-                        
-                        return true;
 
                     default:
                         return true;
@@ -55,7 +50,7 @@ function menuEdit(e) {
             case "new_irr_one":
             case "new_irr_indicative":
                 switch(a1) {
-                    case VERB_TYPE_INPUT_A1:
+                    case VERB_SEARCH_INPUT_A1:
                         return irregularAction()
 
                     default:
