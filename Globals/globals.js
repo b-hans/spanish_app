@@ -146,3 +146,8 @@ const IRR_ACTIONS_RULE = SpreadsheetApp.newDataValidation()
     .setAllowInvalid(false)
     .build();
 
+const EDIT_RULE = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['Select one', 'Yes, make the edits', 'No, return'], true)
+    .setAllowInvalid(false)
+    .build();
+

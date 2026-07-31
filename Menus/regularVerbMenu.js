@@ -1,6 +1,6 @@
 function regularVerbMenu () {
 
-    let CURRENT_TYPE = JSON.parse(CACHE.get('CURRENT_TYPE'));
+    let CURRENT_TYPE = getCurrentType();
 
     const value = CURRENT_TYPE.value
     const a1 = CURRENT_TYPE.a1
@@ -23,6 +23,15 @@ function regularVerbMenu () {
                         CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
                         return getResponse({message: "Cancel, are you sure?", rule: CANCEL_RULE});
+
+                    case "Edit":
+                        CURRENT_TYPE.responseStatus = true;
+                        CACHE.put ('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+
+                        return getResponse ({
+                            message:    "Make these edits?",
+                            rule:       EDIT_RULE
+                        });
 
                     default:
                         CURRENT_TYPE.tense = value;
