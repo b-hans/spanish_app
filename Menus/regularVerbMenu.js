@@ -18,6 +18,10 @@ function regularVerbMenu () {
 
                     case "Cancel":
                         FORMSHEET.getRange(CURRENT_TYPE.a1).setValue("Select one");
+
+                        CURRENT_TYPE.responseStatus = true;
+                        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+
                         return getResponse({message: "Cancel, are you sure?", rule: CANCEL_RULE});
 
                     default:

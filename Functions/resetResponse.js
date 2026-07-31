@@ -9,6 +9,9 @@ function resetResponse() {
             return reBuildVerbForm();
         }
 
+        CURRENT_TYPE.responseStatus = false;
+        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+
         display.setValue ("Resetting....");
 
         FORM_RESPONSE_RANGE.clearContent().clearDataValidations()

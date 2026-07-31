@@ -24,9 +24,7 @@ function menuEdit(e) {
         switch (CURRENT_TYPE.status) {
 
             case "add_type":
-                display.setValue ("hey add the verb type: " + value + " : " + a1);
-                console.log (CURRENT_TYPE);
-                return true;
+                return addVerb();
 
             case "read_verb":
                 return regularVerbMenu();

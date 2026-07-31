@@ -1,17 +1,18 @@
 function addVerb() {
 
-    let display = FORM_SHORT_DISPLAY;
+    let display = FORM_DISPLAY_RANGE
     let CURRENT_TYPE = getCurrentType();
 
     try {
 
         display.setValue("Working....");
 
-        resetResponse();
-
-        FORM_DISPLAY_RANGE.setValue ("Still working");
-
-        console.log (CURRENT_TYPE);
+        if (CURRENT_TYPE.value == "Regular") {
+            CURRENT_TYPE.type = 'regular';
+        }
+        else if (CURRENT_TYPE.value == "Irregular") {
+            CURRENT_TYPE.type = 'irregular';
+        }
         
         let verbData = REGULAR_VERBS.getDataRange().getValues();
         let verbHeadings = verbData.shift();
@@ -60,6 +61,8 @@ function addVerb() {
 
         }
 
+        CURRENT_TYPE.status = 'read_verb';
+
         CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
         return verbOut();
@@ -67,6 +70,6 @@ function addVerb() {
     }
     catch (error) {
         display.setValue ("Error adding verb: " + error);
-        return false;
+            return false;
     }
 }
