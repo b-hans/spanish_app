@@ -113,10 +113,15 @@ const TITLES_BACKGROUND = "#f3f3f3";
 const CURRENT_VERB_DROPDOWN_BACK = "#fce5cd";
 
 // input validations
-const VERB_TYPE_RULE = SpreadsheetApp.newDataValidation()
-    .requireValueInList(['Select one', 'Regular', 'Irregular'])
+const FORM_ACTION_RULE = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['Select one', 'Search verb'])
     .setAllowInvalid(false)
     .build();
+
+// const FORM_ACTION_RULE = SpreadsheetApp.newDataValidation()
+//     .requireValueInList(['Select one', 'Regular', 'Irregular'])
+//     .setAllowInvalid(false)
+//     .build();
 
 const ADD_VERB_RULE = SpreadsheetApp.newDataValidation()
     .requireValueInList(['Select one', "Yes, add this verb", "No, return"], true)

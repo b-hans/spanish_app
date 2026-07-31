@@ -46,7 +46,7 @@ function reBuildVerbForm () {
 
         SpreadsheetApp.flush();
 
-        VERB_TYPE_INPUT_RANGE.setDataValidation(VERB_TYPE_RULE)
+        VERB_TYPE_INPUT_RANGE.setDataValidation(FORM_ACTION_RULE)
             .setValue("Select one");
 
         // display
@@ -118,6 +118,7 @@ function reBuildVerbForm () {
             participle:         null,
             past_participle:    null,
             tenses:             [],
+            responseStatus:     false
         }
 
         CACHE.put("CURRENT_TYPE", JSON.stringify(current_type), 3600);
