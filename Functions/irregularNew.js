@@ -24,7 +24,7 @@ function irregularNew () {
             .setVerticalAlignment('top')
             .setHorizontalAlignment('center');
 
-        VERB_SEARCH_INPUT_RANGE.setDataValidation(IRR_OPTIONS_RULE)
+        VERB_SEARCH_INPUT_RANGE.setDataValidation(IRR_ACTIONS_RULE)
             .setValue('Select one');
 
         PRONOUN_RANGE.setValues(PRONOUN_RANGE_ARRAY)
@@ -56,9 +56,13 @@ function irregularNew () {
             .setFontSize(10)
             .setHorizontalAlignment('center');
 
-        display.setValue ("Select type");
+        console.log (CURRENT_TYPE);
 
-        return true;
+        CURRENT_TYPE.status = "new_irr_indicative";
+        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+        
+        return irrIndicativeOther();        
+
     }
     catch (error) {
         display.setValue ("Error getting irregular form: " + error);

@@ -18,10 +18,10 @@ function irregularAction () {
                 display.setValue ("Cancel add irregular verb");
                 return true;
 
-            case "Other":
-                CURRENT_TYPE.status = "new_irr_indicative";
-                CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
-                return irrIndicativeOther();
+            // case "Other":
+            //     CURRENT_TYPE.status = "new_irr_indicative";
+            //     CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+            //     return irrIndicativeOther();
 
             default:
                 display.setValue ("Irregular: " + CURRENT_TYPE.status + " : " + CURRENT_TYPE.value);

@@ -37,7 +37,6 @@ function menuEdit(e) {
                     case CURRENT_VERBS_INPUT_A1:
                         return verbOut();
 
-
                     default:
                         return true;
                 }
@@ -52,7 +51,6 @@ function menuEdit(e) {
                         return irregularAction()
 
                     default:
-                        // display.setValue ("Test1: " + a1 + " : " + value);
                         return true;
                 }
                 

@@ -69,6 +69,7 @@ const VERB_ACTIONS_DROP_RANGE = FORMSHEET.getRange("E5:F5");
 const VERB_ACTIONS = [
     'Select one',
     'Cancel',
+    'Edit',
     'Indicative',
     'Subjunctive',
     'Imperative',
@@ -135,23 +136,13 @@ const CANCEL_RULE = SpreadsheetApp.newDataValidation()
 
 const CACHE = CacheService.getScriptCache();
 
-const irrOptions = [
+const irrActions = [
     'Select one',
-    'E to IE',
-    'O to UE',
-    'E to I',
-    'U to UE',
-    'GO verb',
-    'ZCO verb',
-    'C to QU',
-    'G to GU',
-    'Z to C',
-    'GER, GIR',
-    'Other'
+    'Enter indicative'
 ];
 
-const IRR_OPTIONS_RULE = SpreadsheetApp.newDataValidation()
-    .requireValueInList(irrOptions, true)
+const IRR_ACTIONS_RULE = SpreadsheetApp.newDataValidation()
+    .requireValueInList(irrActions, true)
     .setAllowInvalid(false)
     .build();
 
