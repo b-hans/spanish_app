@@ -66,7 +66,7 @@ const VERB_HEADING_ARRAY = [
 const VERB_VALUE_RANGE = FORMSHEET.getRange(5, 2, 1, 3);
 const VERB_ACTIONS_RANGE = FORMSHEET.getRange("E4:F4");
 const VERB_ACTIONS_DROP_RANGE = FORMSHEET.getRange("E5:F5");
-const VERB_ACTIONS = [
+const VERB_ACTIONS_IRR = [
     'Select one',
     'Cancel',
     'Edit',
@@ -77,10 +77,29 @@ const VERB_ACTIONS = [
     'Perfect',
     'Perfect Subjunctive'
 ];
-const VERB_ACTIONS_RULE = SpreadsheetApp.newDataValidation()
-    .requireValueInList(VERB_ACTIONS, true)
+
+const VERB_ACTIONS_REG = [
+    'Select one',
+    'Cancel',
+    'Indicative',
+    'Subjunctive',
+    'Imperative',
+    'Progressive',
+    'Perfect',
+    'Perfect Subjunctive'
+];
+
+const VERB_ACTIONS_RULE_IRR = SpreadsheetApp.newDataValidation()
+    .requireValueInList(VERB_ACTIONS_IRR, true)
     .setAllowInvalid(false)
     .build();
+
+const VERB_ACTIONS_RULE_REG = SpreadsheetApp.newDataValidation()
+    .requireValueInList(VERB_ACTIONS_REG, true)
+    .setAllowInvalid(false)
+    .build();
+
+
 
 const VERB_INFINITIVE = FORMSHEET.getRange("B5");
 const VERB_PARTICIPLE = FORMSHEET.getRange("C5");

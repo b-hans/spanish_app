@@ -43,7 +43,15 @@ function resetResponse() {
             VERB_ACTIONS_DROP_RANGE.activate();
             FORM_DISPLAY_RANGE.setValue ("");
         }
+        if (CURRENT_TYPE.status == 'edit_verb') {
+            verbOut();
+            VERB_ACTIONS_DROP_RANGE.activate();
+            FORM_DISPLAY_RANGE.setValue ("In edit mode");
+
+        }
         else {
+            FORM_DISPLAY_RANGE.setValue ('check');
+            console.log (CURRENT_TYPE);
             INFINITIVE_INPUT_RANGE.activate();
         }
         

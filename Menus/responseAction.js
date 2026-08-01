@@ -14,12 +14,18 @@ function responseAction () {
 
             case "Yes, add this verb":
                 return formVerbType();                
-                return addVerb ();
+                // return addVerb ();
 
             case "Yes, cancel":
                 reBuildVerbForm();
                 FORM_DISPLAY_RANGE.setValue ("Canceled");
                 return true;
+
+            case "Yes, make the edits":
+                return doEdits();
+                // display.setValue ("Make these edits yes");
+                // console.log (CURRENT_TYPE);
+                // return true;
 
             default:
                 return true;

@@ -25,6 +25,14 @@ function loadIrrIndicative (CURRENT_TYPE) {
 
         let proNounHeaders = FORMSHEET.getRange("A8:A13").getValues().flat();
 
+        if (CURRENT_TYPE.data) {
+            FORMSHEET.getRange("B8:F13").setValues(CURRENT_TYPE.data)
+                .setHorizontalAlignment("left")
+                .setBackground('#f3f3f3');
+
+            return true;
+        }
+
         // yo
         let valuesArray = [
             ["", "", "", "", ""],

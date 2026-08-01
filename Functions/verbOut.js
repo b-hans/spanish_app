@@ -39,10 +39,19 @@ function verbOut () {
             .setFontColor("#ffffff")
             .setHorizontalAlignment("center");
 
-        VERB_ACTIONS_DROP_RANGE.merge()
-            .setBackground("#ffffff")
-            .setDataValidation(VERB_ACTIONS_RULE)
-            .setValue("Select one");
+        if (CURRENT_TYPE.type == "irregular") {
+            VERB_ACTIONS_DROP_RANGE.merge()
+                .setBackground("#ffffff")
+                .setDataValidation(VERB_ACTIONS_RULE_IRR)
+                .setValue("Select one");
+        }
+        else {
+            VERB_ACTIONS_DROP_RANGE.merge()
+                .setBackground("#ffffff")
+                .setDataValidation(VERB_ACTIONS_RULE_REG)
+                .setValue("Select one");
+
+        }
 
         VERB_VALUE_RANGE.setHorizontalAlignment("center")
             .setBackground('#fff2cc');

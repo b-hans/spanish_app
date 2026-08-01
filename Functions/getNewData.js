@@ -18,7 +18,6 @@ function getNewData (CURRENT_TYPE) {
 
         CURRENT_TYPE.status = "edit_verb";
 
-        display.setValue (display.getValue() + " Getting new data");
         return CURRENT_TYPE;
     }
     catch (error) {

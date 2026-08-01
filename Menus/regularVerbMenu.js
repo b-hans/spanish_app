@@ -27,8 +27,6 @@ function regularVerbMenu () {
                     case "Edit":
 
                         CURRENT_TYPE = getNewData(CURRENT_TYPE);
-                        console.log (CURRENT_TYPE);
-                        return true;
 
                         CURRENT_TYPE.responseStatus = true;
                         CACHE.put ('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
@@ -75,10 +73,10 @@ function regularVerbMenu () {
                 return verbOut()
 
             default:
-                display.setValue("case " + a1);
+                // display.setValue("case " + a1);
+                return true;
         }
 
-        return true;
     }
     catch (error) {
         display.setValue ("Error in regular verb menu action: " + error);
