@@ -25,8 +25,15 @@ function regularVerbMenu () {
                         return getResponse({message: "Cancel, are you sure?", rule: CANCEL_RULE});
 
                     case "Edit":
+
+                        CURRENT_TYPE = getNewData(CURRENT_TYPE);
+                        console.log (CURRENT_TYPE);
+                        return true;
+
                         CURRENT_TYPE.responseStatus = true;
                         CACHE.put ('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
+
+                        console.log (CURRENT_TYPE);
 
                         return getResponse ({
                             message:    "Make these edits?",
