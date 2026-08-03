@@ -15,8 +15,10 @@ function irregularAction () {
                 return enterIrrIndicative()
 
             case "Cancel":
-                display.setValue ("Cancel add irregular verb");
-                return true;
+                return getResponse({
+                    message: "Cancel, are you sure?", 
+                    rule: CANCEL_RULE
+                });
 
             // case "Other":
             //     CURRENT_TYPE.status = "new_irr_indicative";

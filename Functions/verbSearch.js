@@ -45,13 +45,15 @@ function verbSearch() {
 
                 CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
+                if (CURRENT_TYPE.type == "irregular" && !CURRENT_TYPE.participle) {
+                    return irregularNew();
+                }
+
                 return verbOut();
             }
             else {
 
                 CURRENT_TYPE.status = 'new_verb';
-                CURRENT_TYPE.responseStatus = true;
-
                 CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
                 return getResponse({message: "'" + infinitive + 

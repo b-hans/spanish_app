@@ -4,16 +4,13 @@ function getResponse (params) {
     const rule = params.rule;
     const message = params.message;
 
-    const CURRENT_TYPE = JSON.parse(CACHE.get("CURRENT_TYPE"));
+    const CURRENT_TYPE = getCurrentType();
+    CURRENT_TYPE.responseStatus = true;
+    CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
     try {
 
         resetBody();
-
-        // if (CURRENT_TYPE.status == "read_verb") {
-        //     let working_verb = JSON.parse(CACHE.get('working_verb'));
-        //     resetBody();
-        // }
 
         // break display apart
         FORM_DISPLAY_RANGE

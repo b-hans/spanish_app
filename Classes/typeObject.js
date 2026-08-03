@@ -60,14 +60,15 @@ class typeObject {
         else {
 
             let participles = IRREGULAR_PARTICIPLES.getDataRange().getValues();
-            let myParticiples = participles.filter (row => row[0] == verb_id)[0];
+            let myParticiples = participles.filter (row => row[0] == verb_id);
 
-            this.current_type.participle = myParticiples[1];
-            this.current_type.past_participle = myParticiples[2];
+            if (myParticiples.length > 0) {
+                this.current_type.participle = myParticiples[0][1];
+                this.current_type.past_participle = myParticiples[0][2];
+            }
 
             let tenses = IRREGULAR_TENSES.getDataRange().getValues();
             this.current_type.tenses = tenses.filter(row => row[0] == verb_id);
-
 
         }
 
