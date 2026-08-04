@@ -6,15 +6,27 @@ function getNewData (CURRENT_TYPE) {
         if (CURRENT_TYPE.tense) {
             display.setValue (CURRENT_TYPE.tense)
 
-            let newData = FORMSHEET.getRange("B8:F13").getValues();
+            let newData;
+
+            switch (CURRENT_TYPE.tense) {
+                case "Indicative":
+                    newData = FORMSHEET.getRange("B8:F13").getValues();
+
+                    // get the participles
+                    CURRENT_TYPE.participle = FORMSHEET.getRange("C5").getValue();
+                    CURRENT_TYPE.past_participle = FORMSHEET.getRange("D5").getValue();
+                    break;
+
+                case "Subjunctive":
+                    newData = FORMSHEET.getRange("B8:E13").getValues();
+                    break;
+            }
+            
 
             CURRENT_TYPE.data = newData;
 
         }
 
-        // get the participles
-        CURRENT_TYPE.participle = FORMSHEET.getRange("C5").getValue();
-        CURRENT_TYPE.past_participle = FORMSHEET.getRange("D5").getValue();
 
         CURRENT_TYPE.status = "edit_verb";
 

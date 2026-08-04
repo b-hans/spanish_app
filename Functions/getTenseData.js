@@ -9,8 +9,24 @@ function getTenseData (CURRENT_TYPE) {
         let newData;
         let filteredData = [];
         let mappedData;
+        let empty = false;
 
-        if (CURRENT_TYPE.type == "regular") {
+        if (CURRENT_TYPE.type == "irregular"){
+
+            newData = getIrregularTense(CURRENT_TYPE);
+            
+            if (newData.length < 1) {
+                CURRENT_TYPE.tenseEmpty = true;
+                empty = true;
+            }
+            else {
+                CURRENT_TYPE.tenseEmpty = false;
+                CURRENT_TYPE.data = newData;
+                return CURRENT_TYPE;
+            }
+        }
+
+        if (CURRENT_TYPE.type == "regular" || empty) {
 
             switch (CURRENT_TYPE.ending) {
                 case "ar":
@@ -69,7 +85,9 @@ function getTenseData (CURRENT_TYPE) {
 
                     newData.forEach(row => row.splice(2, 0, ""));
 
-                    return newData;
+                    CURRENT_TYPE.data = newData;
+
+                    return (CURRENT_TYPE);
 
                 default:
                     return true;
@@ -77,13 +95,7 @@ function getTenseData (CURRENT_TYPE) {
             }
 
         }
-        else if (CURRENT_TYPE.type == "irregular") {
-            display.setValue ("Type irregular next");
-            return false;
-        }
 
-
-        return true;
     }
     catch (error) {
         display.setValue ("Error getting tense data: " + error);

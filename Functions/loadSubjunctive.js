@@ -4,7 +4,7 @@ function loadSubjunctive (CURRENT_TYPE) {
 
     try {
 
-        CURRENT_TYPE.data = getTenseData(CURRENT_TYPE);
+        CURRENT_TYPE = getTenseData(CURRENT_TYPE);
 
         CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
@@ -33,8 +33,21 @@ function loadSubjunctive (CURRENT_TYPE) {
             .setValues(CURRENT_TYPE.data)
             .setBackground('#f3f3f3');
 
+        if (CURRENT_TYPE.tenseEmpty) {
+            VERB_ACTIONS_DROP_RANGE.clearDataValidations()
+                .clearContent();
 
-        display.setValue ("Subjunctive loaded");
+            SpreadsheetApp.flush();
+
+            VERB_ACTIONS_DROP_RANGE
+                .setDataValidation(IRR_TENSE_ENTER_RULE)
+                .setValue("Select one");
+
+            display.setValue ("Make changes and enter");
+        }
+        else {
+            display.setValue ("Subjunctive loaded");
+        }
 
         return true;
 

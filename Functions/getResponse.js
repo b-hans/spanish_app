@@ -4,7 +4,7 @@ function getResponse (params) {
     const rule = params.rule;
     const message = params.message;
 
-    const CURRENT_TYPE = getCurrentType();
+    let CURRENT_TYPE = getCurrentType();
     CURRENT_TYPE.responseStatus = true;
     CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 

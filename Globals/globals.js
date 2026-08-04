@@ -170,3 +170,8 @@ const EDIT_RULE = SpreadsheetApp.newDataValidation()
     .setAllowInvalid(false)
     .build();
 
+const IRR_TENSE_ENTER_RULE = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['Select one', 'Enter the tense values', 'Cancel'], true)
+    .setAllowInvalid(false)
+    .build();
+

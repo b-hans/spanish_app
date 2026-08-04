@@ -29,7 +29,15 @@ function regularVerbMenu () {
 
                         CACHE.put ('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
-                        console.log (CURRENT_TYPE);
+                        return getResponse ({
+                            message:    "Make these edits?",
+                            rule:       EDIT_RULE
+                        });
+
+                    case "Enter the tense values":
+
+                        CURRENT_TYPE = getNewData(CURRENT_TYPE);
+                        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
                         return getResponse ({
                             message:    "Make these edits?",

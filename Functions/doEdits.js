@@ -4,11 +4,16 @@ function doEdits () {
     let CURRENT_TYPE = getCurrentType();
 
     try {
-        console.log (CURRENT_TYPE);
+
         resetResponse();
         resetOtherFormItems();
 
-        return enterIrrIndicative({edit: true});
+        if (CURRENT_TYPE.tense == "Indicative") {
+            return enterIrrIndicative({edit: true});
+        }
+        else {
+            return enterIrrTense(CURRENT_TYPE);
+        }
 
         return true;
     }
