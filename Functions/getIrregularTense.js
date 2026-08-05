@@ -20,6 +20,10 @@ function getIrregularTense (CURRENT_TYPE) {
             row => mappedData.includes(row[1])
         );
 
+        if (myTenses.length < 1) {
+            return [];
+        }
+
         // con struct the data
         let cols = 4;
         let rows = 6;

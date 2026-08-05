@@ -15,6 +15,11 @@ function enterIrrTense (CURRENT_TYPE) {
                 let conjugationData = CONJUGATION_TYPES.getDataRange().getValues();
                 let conjugationHeaders = conjugationData.shift();
 
+                let subIds = conjugationData.filter(
+                    row => row[conjugationHeaders.indexOf('conjugation type')]
+                        .startsWith ("Subjunctive ")
+                ).map(row => row[0]).flat();
+
                 topHeaders = [
                     { 
                         tense:  'Subjunctive present',
@@ -60,12 +65,22 @@ function enterIrrTense (CURRENT_TYPE) {
 
                 }
 
-                IRREGULAR_TENSES.getRange(
-                    IRREGULAR_TENSES.getLastRow() + 1,
-                    1,
-                    newData.length,
-                    newData[0].length
-                ).setValues(newData);
+                // search for existing first
+                let irrData = IRREGULAR_TENSES.getDataRange().getValues();
+                let irrHeaders = irrData.shift();
+
+                let irrFiltOne = irrData.filter (
+                    row => row[0] != CURRENT_TYPE.verb_id || 
+                        (row[0] == CURRENT_TYPE.verb_id && !subIds.includes(row[1]))
+                );
+
+                let irrEdited = [...irrFiltOne, ...newData];
+                irrEdited.unshift(irrHeaders);
+
+                IRREGULAR_TENSES.clearContents();
+                IRREGULAR_TENSES.getRange (1, 1, irrEdited.length, irrEdited[0].length)
+                    .setValues(irrEdited);
+
                 break;
         }
 
@@ -74,11 +89,14 @@ function enterIrrTense (CURRENT_TYPE) {
         CURRENT_TYPE.tense = null;
         CURRENT_TYPE.tenseEmpty = false;
 
+        let tenses = IRREGULAR_TENSES.getDataRange().getValues();
+        CURRENT_TYPE.tenses = tenses.filter(row => row[0] == CURRENT_TYPE.verb_id);
+
         CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
         verbOut();
 
-        display.setValue ("Tense added!");
+        display.setValue ("Tense updated!");
         return true;
     }
     catch (error) {
