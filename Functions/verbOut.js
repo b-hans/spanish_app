@@ -86,8 +86,10 @@ function verbOut () {
                 CURRENT_TYPE.data = null;
                 return loadSubjunctive(CURRENT_TYPE);
 
-            case "Subjunctive":
             case "Imperative":
+                CURRENT_TYPE.data = null;
+                return loadImperative(CURRENT_TYPE);
+
             case "Progressive":
             case "Perfect":
             case "Perfect Subjunctive:":
