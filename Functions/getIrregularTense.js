@@ -24,24 +24,57 @@ function getIrregularTense (CURRENT_TYPE) {
             return [];
         }
 
-        // con struct the data
-        let cols = 4;
-        let rows = 6;
-        let outData = Array.from ({length: rows}, () => new Array(cols));
 
-        for (let c=0; c<cols; c++) {
-            for (let r=0; r<rows; r++) {
-                if (c == 2) {
-                    outData[r][c] = "";
+        // here is where we need to make a change based on tense type
+        // con struct the data
+
+        let cols;
+        let rows;
+        let outData;
+
+        cols = 4;
+        rows = 6;
+        outData = Array.from ({length: rows}, () => new Array(cols));
+
+        switch (CURRENT_TYPE.tense) {
+            case "Subjunctive":
+                for (let c=0; c<cols; c++) {
+                    for (let r=0; r<rows; r++) {
+                        if (c == 2) {
+                            outData[r][c] = "";
+                        }
+                        else if (c == 3) {
+                            // outData[r][3] = (c-1) + " " + (r+2);
+                            outData[r][3] = myTenses[c-1][r+2];
+                        }
+                        else {
+                            outData[r][c] = myTenses[c][r+2]; //c + " " + (r+2);  //myTenses[c][r+2];
+                        }
+                    }
                 }
-                else if (c == 3) {
-                    // outData[r][3] = (c-1) + " " + (r+2);
-                    outData[r][3] = myTenses[c-1][r+2];
+
+                break;
+    
+            case "Imperative":
+                for (let c=0; c<cols; c++) {
+                    for (let r=0; r<rows; r++) {
+                        if (c == 1 || c == 3) {
+                            outData[r][c] = "";
+                        }
+                        else if (c == 2) {
+                            // outData[r][c] = " c1: " + (c-1) + " r: " + (r+2);
+                            outData[r][c] = myTenses[c-1][r+2];
+                        }
+                        else {
+                            // outData[r][c] = " c0: " + c + " r: " + (r+2);
+                            outData[r][c] = myTenses[c][r+2];
+
+                            // outData[r][c] = myTenses[c][r+2]; //c + " " + (r+2);  //myTenses[c][r+2];
+                        }
+                    }
                 }
-                else {
-                    outData[r][c] = myTenses[c][r+2]; //c + " " + (r+2);  //myTenses[c][r+2];
-                }
-            }
+
+                break;
         }
 
         return outData;

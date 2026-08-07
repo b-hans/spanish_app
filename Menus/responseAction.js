@@ -23,9 +23,6 @@ function responseAction () {
 
             case "Yes, make the edits":
                 return doEdits();
-                // display.setValue ("Make these edits yes");
-                // console.log (CURRENT_TYPE);
-                // return true;
 
             default:
                 return true;

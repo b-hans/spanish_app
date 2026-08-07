@@ -51,7 +51,6 @@ function resetResponse() {
         }
         else {
             FORM_DISPLAY_RANGE.setValue ('check');
-            console.log (CURRENT_TYPE);
             INFINITIVE_INPUT_RANGE.activate();
         }
         

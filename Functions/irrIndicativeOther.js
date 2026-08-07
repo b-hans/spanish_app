@@ -4,8 +4,6 @@ function irrIndicativeOther () {
 
     try {
 
-        console.log (CURRENT_TYPE);
-
         populateRegular(CURRENT_TYPE);
 
         let participle;

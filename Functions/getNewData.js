@@ -18,8 +18,10 @@ function getNewData (CURRENT_TYPE) {
                     break;
 
                 case "Subjunctive":
+                case "Imperative":
                     newData = FORMSHEET.getRange("B8:E13").getValues();
                     break;
+
             }
             
 

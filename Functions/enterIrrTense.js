@@ -9,13 +9,25 @@ function enterIrrTense (CURRENT_TYPE) {
         let topHeaders;
         let sideHeaders = PRONOUN_RANGE_ARRAY;
 
+        let conjugationData;
+        let conjugationHeaders;
+        let subIds;
+
+        let newData;
+
+        let irrData;
+        let irrHeaders
+        let irrFiltOne;
+        let irrEdited;
+
+
         switch (CURRENT_TYPE.tense) {
             case "Subjunctive":
 
-                let conjugationData = CONJUGATION_TYPES.getDataRange().getValues();
-                let conjugationHeaders = conjugationData.shift();
+                conjugationData = CONJUGATION_TYPES.getDataRange().getValues();
+                conjugationHeaders = conjugationData.shift();
 
-                let subIds = conjugationData.filter(
+                subIds = conjugationData.filter(
                     row => row[conjugationHeaders.indexOf('conjugation type')]
                         .startsWith ("Subjunctive ")
                 ).map(row => row[0]).flat();
@@ -47,7 +59,7 @@ function enterIrrTense (CURRENT_TYPE) {
                     }
                 ];
 
-                let newData = new Array();
+                newData = new Array();
 
                 // create a row for each tense and push it onto the newData
                 for (let i=0; i<topHeaders.length; i++) {
@@ -66,15 +78,88 @@ function enterIrrTense (CURRENT_TYPE) {
                 }
 
                 // search for existing first
-                let irrData = IRREGULAR_TENSES.getDataRange().getValues();
-                let irrHeaders = irrData.shift();
+                irrData = IRREGULAR_TENSES.getDataRange().getValues();
+                irrHeaders = irrData.shift();
 
-                let irrFiltOne = irrData.filter (
+                irrFiltOne = irrData.filter (
                     row => row[0] != CURRENT_TYPE.verb_id || 
                         (row[0] == CURRENT_TYPE.verb_id && !subIds.includes(row[1]))
                 );
 
-                let irrEdited = [...irrFiltOne, ...newData];
+                irrEdited = [...irrFiltOne, ...newData];
+                irrEdited.unshift(irrHeaders);
+
+                IRREGULAR_TENSES.clearContents();
+                IRREGULAR_TENSES.getRange (1, 1, irrEdited.length, irrEdited[0].length)
+                    .setValues(irrEdited);
+
+                break;
+
+            case "Imperative":
+
+                conjugationData = CONJUGATION_TYPES.getDataRange().getValues();
+                conjugationHeaders = conjugationData.shift();
+
+                subIds = conjugationData.filter(
+                    row => row[conjugationHeaders.indexOf('conjugation type')]
+                        .startsWith (CURRENT_TYPE.tense)
+                ).map(row => row[0]).flat();
+
+                console.log (subIds);
+
+                topHeaders = [
+                    { 
+                        tense:  'Affirmative',
+                        column: 0,
+                        id:     conjugationData.filter(
+                                    row => row[conjugationHeaders
+                                        .indexOf('conjugation type')] == "Imperative affirmative"
+                                )[0][conjugationHeaders.indexOf('conjugation_type_id')],
+                    }, 
+                    {
+                        tense:  'Negative',
+                        column: 2,
+                        id:     conjugationData.filter(
+                                    row => row[conjugationHeaders
+                                        .indexOf('conjugation type')] == "Imperative negative"
+                                )[0][conjugationHeaders.indexOf('conjugation_type_id')],
+                    },
+                ];
+
+                console.log (topHeaders);
+
+                newData = new Array();
+
+                // create a row for each tense and push it onto the newData
+                for (let i=0; i<topHeaders.length; i++) {
+                    let item = topHeaders[i];
+                    let row = [];
+
+                    row.push(CURRENT_TYPE.verb_id);
+                    row.push(item.id);
+
+                    for (let j=0; j<sideHeaders.length; j++) {
+
+                        row.push(CURRENT_TYPE.data[j][item.column])
+
+                    }
+
+                    newData.push(row);
+
+                }
+
+                console.log (newData);
+
+                // search for existing first
+                irrData = IRREGULAR_TENSES.getDataRange().getValues();
+                irrHeaders = irrData.shift();
+
+                irrFiltOne = irrData.filter (
+                    row => row[0] != CURRENT_TYPE.verb_id || 
+                        (row[0] == CURRENT_TYPE.verb_id && !subIds.includes(row[1]))
+                );
+
+                irrEdited = [...irrFiltOne, ...newData];
                 irrEdited.unshift(irrHeaders);
 
                 IRREGULAR_TENSES.clearContents();

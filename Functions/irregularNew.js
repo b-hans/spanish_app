@@ -56,8 +56,6 @@ function irregularNew () {
             .setFontSize(10)
             .setHorizontalAlignment('center');
 
-        console.log (CURRENT_TYPE);
-
         CURRENT_TYPE.status = "new_irr_indicative";
         CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
         

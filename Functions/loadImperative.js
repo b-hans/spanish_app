@@ -34,7 +34,22 @@ function loadImperative (CURRENT_TYPE) {
 
         FORMSHEET.getRange(8, 2, 6, 4).setValues(CURRENT_TYPE.data)
 
-        display.setValue ("Imperative loaded");
+
+        if (CURRENT_TYPE.tenseEmpty) {
+            VERB_ACTIONS_DROP_RANGE.clearDataValidations()
+                .clearContent();
+
+            SpreadsheetApp.flush();
+
+            VERB_ACTIONS_DROP_RANGE
+                .setDataValidation(IRR_TENSE_ENTER_RULE)
+                .setValue("Select one");
+
+            display.setValue ("Make changes and enter");
+        }
+        else {
+            display.setValue ("Imperative loaded");
+        }
 
         return true;
     }
