@@ -5,7 +5,8 @@ function loadImperative (CURRENT_TYPE) {
     try {
         display.setValue ("Load imperative");
 
-        // CURRENT_TYPE = getTenseData(CURRENT_TYPE);
+        CURRENT_TYPE = getTenseData(CURRENT_TYPE);
+        CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
         PRONOUN_RANGE.setValues(PRONOUN_RANGE_ARRAY)
             .setBackground('#3c78d8')
@@ -30,6 +31,10 @@ function loadImperative (CURRENT_TYPE) {
             FORMSHEET.getRange(i, 4, 1, 2).merge()
                 .setBackground('#f3f3f3');
         }
+
+        FORMSHEET.getRange(8, 2, 6, 4).setValues(CURRENT_TYPE.data)
+
+        display.setValue ("Imperative loaded");
 
         return true;
     }

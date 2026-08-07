@@ -45,16 +45,19 @@ function getTenseData (CURRENT_TYPE) {
             tenseData = tenseDataSheet.getDataRange().getValues();
             let headers = tenseData.shift();
 
+            let cols;
+            let rows;
+
             // map to tense
             switch (CURRENT_TYPE.tense) {
                 case "Subjunctive":
-                    display.setValue ("get subjunctive tense data");
+                    display.setValue ("Getting subjunctive tense data");
                     filteredData = tenseData.filter (
                         row => row[0].startsWith("Subjunctive ")
                     );
 
-                    let cols = 3;
-                    let rows = 6;
+                    cols = 3;
+                    rows = 6;
 
                     newData = Array.from ({length: rows}, () => new Array(cols));
 
@@ -89,6 +92,42 @@ function getTenseData (CURRENT_TYPE) {
 
                     return (CURRENT_TYPE);
 
+                case "Imperative":
+                    display.setValue ("Getting imperative tense data here");
+                    filteredData = tenseData.filter (
+                        row => row[0].startsWith("Imperative ")
+                    );
+
+                    cols = 4;
+                    rows = 6;
+
+                    newData = Array.from ({length: rows}, () => new Array(cols));
+
+                    for (let c=0; c<cols; c++) {
+                        for (let r=0; r<rows; r++) {
+
+                            if (c == 1 || c == 3 || r == 0) {
+                                if (r == 0) {
+                                    newData[r][c] = "-";
+                                }
+                                else {
+                                    newData[r][c] = "";
+                                }
+                            }
+                            else if (c == 2) {
+                                // newData[r][c] = CURRENT_TYPE.stem + " r: " + (r+1) + " c: " + (c-1);
+                                newData[r][c] = "no " + CURRENT_TYPE.stem + filteredData[c-1][r+1];
+                            }
+                            else {
+                                newData[r][c] = CURRENT_TYPE.stem + filteredData[c][r+1];
+                                // newData[r][c] = CURRENT_TYPE.stem + " r: " + (r+1) + " c: " + c;
+                            }
+                        }
+                    }
+
+                    CURRENT_TYPE.data = newData;
+                    return CURRENT_TYPE;
+                    
                 default:
                     return true;
                     
