@@ -105,8 +105,6 @@ function enterIrrTense (CURRENT_TYPE) {
                         .startsWith (CURRENT_TYPE.tense)
                 ).map(row => row[0]).flat();
 
-                console.log (subIds);
-
                 topHeaders = [
                     { 
                         tense:  'Affirmative',
@@ -125,8 +123,6 @@ function enterIrrTense (CURRENT_TYPE) {
                                 )[0][conjugationHeaders.indexOf('conjugation_type_id')],
                     },
                 ];
-
-                console.log (topHeaders);
 
                 newData = new Array();
 
@@ -147,8 +143,6 @@ function enterIrrTense (CURRENT_TYPE) {
                     newData.push(row);
 
                 }
-
-                console.log (newData);
 
                 // search for existing first
                 irrData = IRREGULAR_TENSES.getDataRange().getValues();
