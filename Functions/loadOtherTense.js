@@ -9,20 +9,10 @@ function loadOtherTense (CURRENT_TYPE) {
             .setFontColor('#ffffff')
             .setHorizontalAlignment('right');
 
-        TENSE_HEADING_RANGE.setValues([[
-            'Progressive present',
-            'Progressive preterite',
-            'Progressive imperfect',
-            'Progressive conditional',
-            'Progressive future'
-            ]])
-            .setHorizontalAlignment('center')
-            .setBackground('#000000')
-            .setFontColor('#ffffff');
-
         let tenseNumCols;
         let helperVerb;
         let myParticiple;
+        let myHeaders;
 
         switch (CURRENT_TYPE.tense) {
             case "Progressive":
@@ -30,12 +20,37 @@ function loadOtherTense (CURRENT_TYPE) {
                 tenseNumCols = 4;
                 helperVerb = new typeObject({value: 'estar'}).current_type;
                 myParticiple = CURRENT_TYPE.participle;
+                myHeaders = [
+                    'Progressive present',
+                    'Progressive preterite',
+                    'Progressive imperfect',
+                    'Progressive conditional',
+                    'Progressive future'
+                ];
+                break;
+
+            case "Perfect":
+                tenseNumCols = 4;
+                helperVerb = new typeObject({value: 'haber'}).current_type;
+                myParticiple = CURRENT_TYPE.past_participle;
+                myHeaders = [
+                    'Perfect present',
+                    'Perfect preterite',
+                    'Perfect imperfect',
+                    'Perfect conditional',
+                    'Perfect future'
+                ];
                 break;
 
             default:
                 display.setValue (CURRENT_TYPE.tense);
                 return true;
         }
+
+        TENSE_HEADING_RANGE.setValues([myHeaders])
+            .setHorizontalAlignment('center')
+            .setBackground('#000000')
+            .setFontColor('#ffffff');
 
         // get estar
         // let estar = new typeObject({value: 'estar'}).current_type;
@@ -59,7 +74,7 @@ function loadOtherTense (CURRENT_TYPE) {
         for (let c=0; c<cols; c++) {
             for (let r=0; r<rows; r++) {
 
-                newData[r][c] = indicativeTenses[c][r+2] + " " + CURRENT_TYPE.participle;
+                newData[r][c] = indicativeTenses[c][r+2] + " " + myParticiple;
 
             }
         }
