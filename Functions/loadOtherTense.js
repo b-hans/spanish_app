@@ -1,4 +1,4 @@
-function loadProgressive (CURRENT_TYPE) {
+function loadOtherTense (CURRENT_TYPE) {
 
     let display = FORM_DISPLAY_RANGE;
 
@@ -20,8 +20,25 @@ function loadProgressive (CURRENT_TYPE) {
             .setBackground('#000000')
             .setFontColor('#ffffff');
 
+        let tenseNumCols;
+        let helperVerb;
+        let myParticiple;
+
+        switch (CURRENT_TYPE.tense) {
+            case "Progressive":
+
+                tenseNumCols = 4;
+                helperVerb = new typeObject({value: 'estar'}).current_type;
+                myParticiple = CURRENT_TYPE.participle;
+                break;
+
+            default:
+                display.setValue (CURRENT_TYPE.tense);
+                return true;
+        }
+
         // get estar
-        let estar = new typeObject({value: 'estar'}).current_type;
+        // let estar = new typeObject({value: 'estar'}).current_type;
         let conjugationData = CONJUGATION_TYPES.getDataRange().getValues();
         let conjugationHeaders = conjugationData.shift();
 
@@ -30,7 +47,7 @@ function loadProgressive (CURRENT_TYPE) {
                 .startsWith("Indicative")
         ).map(row => row[conjugationHeaders.indexOf('conjugation_type_id')]).flat()
 
-        let indicativeTenses = estar.tenses.filter(
+        let indicativeTenses = helperVerb.tenses.filter(
             row => indicativeIds.includes(row[1])
         );
 
@@ -61,11 +78,11 @@ function loadProgressive (CURRENT_TYPE) {
 
         CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
-        display.setValue ("Progressive tense loaded");
+        display.setValue (CURRENT_TYPE.tense + " tense loaded");
         return true;
     }
     catch (error) {
-        display.setValue ("Error loading progressive tenses: " + error);
+        display.setValue ("Error loading " + CURRENT_TYPE.tense + " tenses: " + error);
         return false;
     }
 }

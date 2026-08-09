@@ -91,13 +91,15 @@ function verbOut () {
                 return loadImperative(CURRENT_TYPE);
 
             case "Progressive":
-                CURRENT_TYPE.data = null;
-                return loadProgressive(CURRENT_TYPE);
-
             case "Perfect":
             case "Perfect Subjunctive:":
-                display.setValue ("Tense: " + CURRENT_TYPE.tense);
-                return true;
+                CURRENT_TYPE.data = null;
+                return loadOtherTense(CURRENT_TYPE);
+
+            // case "Perfect":
+            // case "Perfect Subjunctive:":
+            //     display.setValue ("Tense: " + CURRENT_TYPE.tense);
+            //     return true;
 
             default:
                 display.setValue ("Verb loaded");
