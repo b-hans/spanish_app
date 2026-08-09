@@ -12,6 +12,11 @@ function menuEdit(e) {
             return true;
         }
 
+        if (a1 == "A1" && value.toLowerCase() == "start"){
+            return reBuildVerbForm();
+        }
+
+
         CURRENT_TYPE.a1 = a1;
         CURRENT_TYPE.value = value;
 
