@@ -50,6 +50,7 @@ function regularVerbMenu () {
                             CURRENT_TYPE.data = null;
                         }
                         CURRENT_TYPE.tense = value;
+
                         CACHE.put('CURRENT_TYPE', JSON.stringify(CURRENT_TYPE), 3600);
 
                         return verbOut();

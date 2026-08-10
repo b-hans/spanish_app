@@ -13,11 +13,12 @@ function loadOtherTense (CURRENT_TYPE) {
         let helperVerb;
         let myParticiple;
         let myHeaders;
+        let myHeaderRange = TENSE_HEADING_RANGE;
 
         switch (CURRENT_TYPE.tense) {
             case "Progressive":
 
-                tenseNumCols = 4;
+                tenseNumCols = 5;
                 helperVerb = new typeObject({value: 'estar'}).current_type;
                 myParticiple = CURRENT_TYPE.participle;
                 myHeaders = [
@@ -30,7 +31,7 @@ function loadOtherTense (CURRENT_TYPE) {
                 break;
 
             case "Perfect":
-                tenseNumCols = 4;
+                tenseNumCols = 5;
                 helperVerb = new typeObject({value: 'haber'}).current_type;
                 myParticiple = CURRENT_TYPE.past_participle;
                 myHeaders = [
@@ -42,31 +43,60 @@ function loadOtherTense (CURRENT_TYPE) {
                 ];
                 break;
 
+            case "Perfect Subjunctive":
+                tenseNumCols = 3;
+                helperVerb = new typeObject({value: 'haber'}).current_type;
+                myParticiple = CURRENT_TYPE.past_participle;
+                myHeaders = [
+                    'Perfect subjunctive present',
+                    'Perfect subjunctive past',
+                    '',
+                    'Perfect subjunctive future',
+                    ''
+                ];
+
+                FORMSHEET.getRange("C7:D7").merge();
+                FORMSHEET.getRange("E7:F7").merge();
+                myHeaderRange = FORMSHEET.getRange("B7:F7");
+                break;
+
             default:
                 display.setValue (CURRENT_TYPE.tense);
                 return true;
         }
 
-        TENSE_HEADING_RANGE.setValues([myHeaders])
+        myHeaderRange.setValues([myHeaders])
             .setHorizontalAlignment('center')
             .setBackground('#000000')
+            .setVerticalAlignment("middle")
             .setFontColor('#ffffff');
 
-        // get estar
-        // let estar = new typeObject({value: 'estar'}).current_type;
+
+        // get helper verb
         let conjugationData = CONJUGATION_TYPES.getDataRange().getValues();
         let conjugationHeaders = conjugationData.shift();
 
-        let indicativeIds = conjugationData.filter (
-            row => row[conjugationHeaders.indexOf('conjugation type')]
-                .startsWith("Indicative")
-        ).map(row => row[conjugationHeaders.indexOf('conjugation_type_id')]).flat()
+        let helperTenseIds;
 
-        let indicativeTenses = helperVerb.tenses.filter(
-            row => indicativeIds.includes(row[1])
+        if (CURRENT_TYPE.tense == "Perfect Subjunctive") {
+            helperTenseIds = conjugationData.filter (
+                row => row[conjugationHeaders.indexOf('conjugation type')]
+                    .startsWith("Subjunctive")
+            ).map(row => row[conjugationHeaders.indexOf('conjugation_type_id')]).flat();
+
+        }
+        else {
+            helperTenseIds = conjugationData.filter (
+                row => row[conjugationHeaders.indexOf('conjugation type')]
+                    .startsWith("Indicative")
+            ).map(row => row[conjugationHeaders.indexOf('conjugation_type_id')]).flat();
+        }
+
+        let helperTenses = helperVerb.tenses.filter(
+            row => helperTenseIds.includes(row[1])
         );
 
-        let cols = 5;
+        let cols = tenseNumCols;
         let rows = 6;
 
         let newData = Array.from ({length: rows}, () => new Array(cols));
@@ -74,13 +104,32 @@ function loadOtherTense (CURRENT_TYPE) {
         for (let c=0; c<cols; c++) {
             for (let r=0; r<rows; r++) {
 
-                newData[r][c] = indicativeTenses[c][r+2] + " " + myParticiple;
+                newData[r][c] = helperTenses[c][r+2] + " " + myParticiple;
 
             }
         }
 
+
         if (newData.length > 1) {
-            CURRENT_TYPE.data = newData;
+
+            if (CURRENT_TYPE.tense == "Perfect Subjunctive") {
+
+                newData.forEach ( row => {
+                    row.splice(4, 0, "");
+                    row.splice(2, 0, "");
+                });
+
+                CURRENT_TYPE.data = newData;
+
+                for (let i=8; i<14; i++) {
+                    FORMSHEET.getRange(i, 3, 1, 2).merge();
+                    FORMSHEET.getRange(i, 5, 1, 2).merge();
+                }
+
+            }
+            else {
+                CURRENT_TYPE.data = newData;
+            }
 
             FORMSHEET.getRange(8, 2, 6, 5).setValues(newData)
                 .setBackground('#f3f3f3')
