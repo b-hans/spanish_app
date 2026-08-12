@@ -122,35 +122,14 @@ function loadOtherTense (CURRENT_TYPE) {
 
                     let workArray = workStr.split(' ');
 
-                    // workArray = workArray.map ( row2 => {
+                    workArray[0] = workArray[0].slice(0, -1);
 
-                    //     let wRow = [...row2];
+                    newRow[1] = workArray[0] + " " + workArray[2] + ", " +
+                        workArray[1] + " " + workArray[2];
 
-                    //     console.log (wRow);
-
-                    //     // let tempFirst = wRow[0].slice(0, -1);
-
-                    //     // console.log (tempFirst, wRow);
-
-                    //     // console.log(
-                    //     // wRow[0] + " " +  wRow[3] + ", " + wRow[1] + " " + wRow[2]);
-
-                    // });
-
-                    console.log (workArray);
-
-                    // let mWorkArray = workArray.map (
-                    //     row => row + " " + CURRENT_TYPE.past_participle
-                    // );
-
-                    // let outStr = mWorkArray.join(', ');
-                                
-                    // newRow[1] = outStr;
+                    return newRow;
 
                 });
-
-                display.setValue ("tester 2");
-                return true;
 
                 newData.forEach ( row => {
                     row.splice(4, 0, "");
