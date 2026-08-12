@@ -114,6 +114,44 @@ function loadOtherTense (CURRENT_TYPE) {
 
             if (CURRENT_TYPE.tense == "Perfect Subjunctive") {
 
+                // get the past subjunctive variations
+                newData = newData.map ( row => {
+                    let newRow = [...row];
+
+                    let workStr = newRow[1];
+
+                    let workArray = workStr.split(' ');
+
+                    // workArray = workArray.map ( row2 => {
+
+                    //     let wRow = [...row2];
+
+                    //     console.log (wRow);
+
+                    //     // let tempFirst = wRow[0].slice(0, -1);
+
+                    //     // console.log (tempFirst, wRow);
+
+                    //     // console.log(
+                    //     // wRow[0] + " " +  wRow[3] + ", " + wRow[1] + " " + wRow[2]);
+
+                    // });
+
+                    console.log (workArray);
+
+                    // let mWorkArray = workArray.map (
+                    //     row => row + " " + CURRENT_TYPE.past_participle
+                    // );
+
+                    // let outStr = mWorkArray.join(', ');
+                                
+                    // newRow[1] = outStr;
+
+                });
+
+                display.setValue ("tester 2");
+                return true;
+
                 newData.forEach ( row => {
                     row.splice(4, 0, "");
                     row.splice(2, 0, "");
